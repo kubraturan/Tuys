@@ -5,12 +5,14 @@ import DatePicker from 'react-native-datepicker'
 import { Button, Card, CardSection } from '../ortak';
 import { tarlaEkleChanged, tarlaCreate } from '../actions';
 
-let PickerItem = Picker.Item;
+const PickerItem = Picker.Item;
 
 class TARLAEKLEFORM extends Component {
 
     clickSave() {
       const {
+        latitude,
+       longitude,
         tarlaAdi,
       ekimTarihi,
          urunAdi,
@@ -32,6 +34,8 @@ class TARLAEKLEFORM extends Component {
     alanCinsi } = this.props;
 
       this.props.tarlaCreate({
+        latitude,
+       longitude,
         tarlaAdi,
         ekimTarihi,
         urunAdi,
@@ -140,7 +144,6 @@ this.props.tarlaEkleChanged({ props: 'gubreCesidi', value: gubreCesidi })}
     return (
       <ScrollView>
       <Card>
-
       <CardSection>
       <Text style={{ flex: 1 }}>Tarla Adı Giriniz:</Text>
       <TextInput
@@ -419,6 +422,7 @@ this.props.tarlaEkleChanged({ props: 'ekilecekAlanBoyutu', value: ekilecekAlanBo
 
 const mapToStateProps = ({ TarlaEkleResponse }) => {
   const {
+
     tarlaAdi,
   ekimTarihi,
   urunAdi,
@@ -440,7 +444,9 @@ maliyetCinsiGubreCesidi,
 maliyetCinsiGubreTuru,
 alanCinsi } = TarlaEkleResponse;
 
-  return { tarlaAdi,
+  return {
+
+    tarlaAdi,
     ekimTarihi,
     urunAdi,
     urunCesidi,

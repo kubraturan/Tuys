@@ -6,13 +6,16 @@ import { Button, Card, CardSection } from '../ortak';
 
 export default class profilForm extends Component {
 
+  clickTarlalarimMap() {
+    Actions.mapMarkerList();
+  }
 
   clickTarlalarim() {
     Actions.tarlaList();
   }
 
   clickTarlaEkle() {
-    Actions.tarlaEkle();
+    Actions.konumEkleMap();
   }
   clickToplamMaliyet() {
     Actions.tarlaListMaliyet();
@@ -23,6 +26,12 @@ export default class profilForm extends Component {
         <Card>
         <CardSection>
       <Button onPress={this.clickTarlalarim}> Tarlalarım </Button>
+
+
+        </CardSection>
+
+        <CardSection>
+      <Button onPress={this.clickTarlalarimMap}> Tarlalarım  Mapp</Button>
 
 
         </CardSection>

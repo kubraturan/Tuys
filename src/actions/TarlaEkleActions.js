@@ -1,4 +1,3 @@
-
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { TARLA_EKLE_CHANGED,
@@ -16,7 +15,10 @@ export const tarlaEkleChanged = ({ props, value }) => {
 };
 
 
-export const tarlaCreate = ({ tarlaAdi,
+export const tarlaCreate = ({
+  latitude,
+ longitude,
+  tarlaAdi,
 ekimTarihi,
    urunAdi,
   urunCesidi,
@@ -33,14 +35,17 @@ ekimTarihi,
       ekilecekAlanBoyutu,
       maliyetCinsiUrun,
     maliyetCinsiGubreCesidi,
-  maliyetCinsiGubreTuru ,
+  maliyetCinsiGubreTuru,
 alanCinsi }) => {
   const { currentUser } = firebase.auth();
 
   return (dispatch) => {
     dispatch({ type: CREATE_REQUEST });
     firebase.database().ref(`${currentUser.uid}`)
-      .push({ tarlaAdi,
+      .push({
+        latitude,
+        longitude,
+        tarlaAdi,
       ekimTarihi,
          urunAdi,
         urunCesidi,
@@ -79,7 +84,9 @@ export const tarlalarListData = () => {
 };
 
 
-export const tarlalariDuzenle = ({ tarlaAdi,
+export const tarlalariDuzenle = ({
+
+  tarlaAdi,
 ekimTarihi,
    urunAdi,
   urunCesidi,
@@ -104,7 +111,9 @@ ekimTarihi,
   return (dispatch) => {
     dispatch({ type: UPDATE_REQUEST });
     firebase.database().ref(`${currentUser.uid}/${uid}`)
-      .set({ tarlaAdi,
+      .set({
+
+        tarlaAdi,
       ekimTarihi,
          urunAdi,
         urunCesidi,

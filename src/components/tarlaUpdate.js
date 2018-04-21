@@ -11,6 +11,8 @@ class TarlaUpdate extends Component {
 
 
  state = {
+   konumEkleLongitude: '',
+   konumEkleLatitude: '',
    tarlaAdi: '',
    ekimTarihi: '',
    urunAdi: '',
@@ -34,6 +36,8 @@ alanCinsi: ''
         };
  componentWillMount() {
    const {
+     konumEkleLongitude,
+     konumEkleLatitude,
      tarlaAdi,
    ekimTarihi,
       urunAdi,
@@ -54,7 +58,9 @@ alanCinsi: ''
      maliyetCinsiGubreTuru,
    alanCinsi } = this.props.tarlalar;
 
-   this.setState({ tarlaAdi,
+   this.setState({ konumEkleLongitude,
+   konumEkleLatitude,
+     tarlaAdi,
  ekimTarihi,
     urunAdi,
    urunCesidi,
@@ -136,7 +142,9 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
 }
 
   clickUpdate() {
-    const { tarlaAdi,
+    const { konumEkleLongitude,
+    konumEkleLatitude,
+      tarlaAdi,
   ekimTarihi,
      urunAdi,
     urunCesidi,
@@ -159,7 +167,9 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
 
     } = this.state;
 
-    this.props.tarlalariDuzenle({ tarlaAdi,
+    this.props.tarlalariDuzenle({ konumEkleLongitude,
+    konumEkleLatitude,
+      tarlaAdi,
   ekimTarihi,
      urunAdi,
     urunCesidi,

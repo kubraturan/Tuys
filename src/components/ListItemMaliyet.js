@@ -14,14 +14,14 @@ hesapla(a, b, c) {
 }
 
   render() {
-const { tarlaAdi, urunAdi, urunCesidi, urunMaliyet, gubreCesitMaliyet, gubreTuruMaliyet } = this.props.tarla;
+const { tarlaAdi, urunAdi, urunCesidi, urunMaliyet, gubreCesitMaliyet, gubreTuruMaliyet, latitude , longitude } = this.props.tarla;
 
     return (
       <ScrollView>
   <Card >
         <CardSection>
         <Text>
-          { tarlaAdi } - {urunAdi}- {urunCesidi}
+          { tarlaAdi } - {urunAdi}- {urunCesidi}- {latitude}- {longitude}
   </Text>
   </CardSection>
   <CardSection>

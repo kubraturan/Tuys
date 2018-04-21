@@ -10,6 +10,8 @@ class TarlaUpdate extends Component {
 
  componentWillMount() {
    const {
+     latitude,
+     longitude,
      tarlaAdi,
    ekimTarihi,
       urunAdi,
@@ -30,7 +32,10 @@ class TarlaUpdate extends Component {
      maliyetCinsiGubreTuru,
    alanCinsi } = this.props.tarlalar;
 
-   this.setState({ tarlaAdi,
+   this.setState({
+     latitude,
+     longitude,
+     tarlaAdi,
    ekimTarihi,
       urunAdi,
      urunCesidi,

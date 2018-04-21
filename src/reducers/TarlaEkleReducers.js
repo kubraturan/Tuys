@@ -1,6 +1,7 @@
 import { TARLA_EKLE_CHANGED, CREATE_REQUEST, CREATE_REQUEST_SUCCESS } from '../actions/types';
 
 const INITIAL_STATE = {
+
   tarlaAdi: '',
   ekimTarihi: '',
   urunAdi: '',

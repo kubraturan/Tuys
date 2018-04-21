@@ -1,27 +1,32 @@
 import React, { Component } from 'react';
-import {AppRegistry, StyleSheet, Text, View, Dimensions, Alert} from 'react-native';
+import {AppRegistry, StyleSheet, Text, View, Dimensions, Alert } from 'react-native';
+import { Actions } from 'react-native-router-flux';
 import MapView from 'react-native-maps';
 var {height, width} = Dimensions.get('window');
 
 class GeolocationExample extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
+
       region: {
-        latitude: 39.7496655,
-        longitude: 36.9684362,
+        latitude: 0,
+        longitude: 0,
         latitudeDelta: 0.005,
         longitudeDelta: 0.005,
+
       }
     };
-    this.onRegionChange = this.onRegionChange.bind(this);
+
   }
 
-  onRegionChange(region) {
+  componentWillMount() {
      navigator.geolocation.getCurrentPosition(
       (position) => {
-        this.setState({
+            this.setState({
           region: {
+
             latitude: position.coords.latitude,
             longitude: position.coords.longitude,
             latitudeDelta: 0.005,
@@ -30,47 +35,51 @@ class GeolocationExample extends Component {
           }
 
         });
+            console.log(position.coords.latitude);
       },
-      (error) => this.setState({ error: Alert.alert('deneme') }),
-      { enableHighAccuracy: true, timeout: 20000, maximumAge: 1000 },
+      (error) => this.setState({ error: Alert.alert('deneme')
+    }),
+      console.log('error'),
+      { enableHighAccuracy: true, timeout: 50000, maximumAge: 1000 },
     );
 }
 
-onLongPress(location) {
+/*onLongPress(location) {
     console.log(location);
    Alert.alert(location);
-    }
+ }*/
   onMapPress(e) {
-    Alert.alert(
-      'Mesaj',
+    var konumLatitude = e.nativeEvent.coordinate.latitude;
+    var konumLongitude = e.nativeEvent.coordinate.longitude;
+  Alert.alert(
+      'Tarla',
       'Tarla Eklensin mi?',
       [
-
-        { text: 'Tamam', onPress: () => null }
+    { text: 'Tarla Ekle',
+     onPress: () => Actions.TarlaEkleForm({ latitude: konumLatitude.toString(), longitude: konumLongitude.toString() })
+    },
+        { text: 'Yeni Konum Seç', onPress: () => null },
 
       ]
 
     );
-/*var a = e.nativeEvent.coordinate.latitude;
-        Alert.alert(a.toString());//returns a number
         }
-*/
-}
+
   render() {
     return (
       <View style={styles.container}>
         <MapView
         style={styles.map}
         region={this.state.region}
-        onRegionChange={this.onRegionChange}
-        onLongPress={this.onMapPress.bind(this)}
+      //  onRegionChange={this.onRegionChange}
+     onLongPress={this.onMapPress}
         >
         <MapView.Marker
            coordinate={{ latitude: this.state.region.latitude,
              longitude: this.state.region.longitude }}
-           title="Victory Monument"
-           description="A large military monument in Bangkok, Thailand."
-         />
+           title="evim"
+           description="Evim."
+        />
         </MapView>
         </View>
     );
@@ -89,5 +98,4 @@ const styles = StyleSheet.create({
     height: height
   }
 });
-
 export default GeolocationExample;

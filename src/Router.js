@@ -10,6 +10,8 @@ import uyeOlForm from './components/uyeOlForm';
 import ilkEkranForm from './components/ilkEkranForm';
 import tarlaBilgisiGörüntüle from './components/tarlaBilgisiGoruntule';
 import tarlaListMaliyet from './components/tarlaListMaliyet';
+import mapMarkerList from './components/mapMarkerList';
+import konumEkleMap from '../map/appOpen';
 
  class RouterComponent extends React.Component {
      render() {
@@ -29,17 +31,24 @@ import tarlaListMaliyet from './components/tarlaListMaliyet';
         title="Profil Sayfası"
       />
         <Scene
-          onRight={() => Actions.tarlaEkle()}
+          onRight={() => Actions.TarlaEkleForm()}
           rightTitle="Yeni Tarla"
           key="tarlaList"
           component={TarlaList}
           title="Tarlalarım"
         />
+
         <Scene
-          key="tarlaEkle"
+          key="konumEkleMap"
+          component={konumEkleMap}
+          title="Konum Ekle"
+        />
+        <Scene
+          key="TarlaEkleForm"
           component={TarlaEkleForm}
           title="Tarla Ekle"
         />
+
         <Scene
           key="tarlaupdate"
           component={tarlaupdate}
@@ -59,6 +68,11 @@ import tarlaListMaliyet from './components/tarlaListMaliyet';
           key="tarlaListMaliyet"
           component={tarlaListMaliyet}
           title="Toplam Maliyet Görüntüle"
+        />
+        <Scene
+          key="mapMarkerList"
+          component={mapMarkerList}
+          title="mapMarkerList"
         />
 
 

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {AppRegistry, StyleSheet, Text, View, Dimensions} from 'react-native';
-var {height, width} = Dimensions.get('window');
+var {height, width } = Dimensions.get('window');
 import MapView from 'react-native-maps';
 
 export default class l9_map extends Component {
@@ -8,33 +8,33 @@ export default class l9_map extends Component {
     super(props);
     this.state = {
       region: {
-        latitude: 13.764884,
-        longitude: 100.538265,
+        latitude: 39.73902,
+        longitude: 37.018568,
         latitudeDelta: 0.005,
         longitudeDelta: 0.005,
       },
       markers:[
-        {latlng: {latitude: 13.764884, longitude: 100.538265},
+        {latlng: {latitude:  39.747203, longitude:  37.017195},
           title: "Victory Monument" , description: "A large military monument in Bangkok, Thailand."},
-        {latlng: {latitude: 13.763681, longitude: 100.538125},
-          title: "Saxophone Club" , description: "A music pub for saxophone lover"},
-        {latlng: {latitude: 13.764595, longitude: 100.537438},
+        {latlng: {latitude: 39.748847, longitude: 37.016849},
+          title: "Saxophone Cub" , description: "A music pub for saxophone lover"},
+        {latlng: {latitude: 39.764595, longitude: 37.537438},
           title: "Coco Depertment Store" , description: "Fashion Department Store"},
       ]
     };
-    this.onRegionChange = this.onRegionChange.bind(this);
+//    this.onRegionChange = this.onRegionChange.bind(this);
   }
 
-  onRegionChange(region) {
-    this.setState({ region });
-  }
+//  onRegionChange(region) {
+//    this.setState({ region });
+//  }
 
   render() {
     return (
       <View style={styles.container}>
         <MapView style={styles.map}
           region={this.state.region}
-          onRegionChange={this.onRegionChange}
+      //    onRegionChange={this.onRegionChange}
         >
         {this.state.markers.map((marker,i) => (
           <MapView.Marker
@@ -67,6 +67,56 @@ const styles = StyleSheet.create({
   },
   map:{
     width: width,
-    height: height*2/3
+    height: height
   }
 });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+return (
+  <View style={styles.container}>
+    <MapView
+     style={styles.map}
+      region={{
+          latitude: 39.73902,
+          longitude: 37.018568,
+          latitudeDelta: 0.005,
+          longitudeDelta: 0.005,
+        }}
+    >
+{
+  if (markerler['0'].length === 0) {
+      <View>
+      <Text>Tarla Yükleniyorr....</Text>
+      </View>
+    }
+   else{
+    markerler['0'].map((marker, i) => (
+      <MapView.Marker
+         key={i}
+        coordinate={{
+          latlng: { latitude: parseFloat(marker.latitude),
+             longitude: parseFloat(marker.longitude) }}}
+             title={marker.title}
+        description={marker.description}
+      />
+    ))} }
+    </MapView>
+  </View>
+);

@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text, ScrollView } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import { Card, CardSection } from '../ortak';
 import { tarlalariDuzenle } from '../actions';
 
@@ -58,6 +59,31 @@ class TarlaUpdate extends Component {
 
 
    render() {
+//bugunun gun bilgisini diziye at
+const bugununTarihi = [];
+const ekiminTarihi = [];
+
+moment().format('DD');
+bugununTarihi.push(
+  parseFloat(moment().format('YYYY')),
+parseFloat(moment().format('MM')),
+parseFloat(moment().format('DD'))
+);
+console.log(bt);
+
+moment().format('DD');
+ekiminTarihi.push(
+parseFloat(moment(this.state.ekimTarihi,"DD/MM/YYYY").format('YYYY')),
+parseFloat(moment(this.state.ekimTarihi,"DD/MM/YYYY").format('MM')),
+parseFloat(moment(this.state.ekimTarihi,"DD/MM/YYYY").format('DD'))
+);
+const bt = moment(bugununTarihi);
+const et = moment(ekiminTarihi);
+console.log(et);
+//ektiğin günden geçen zaman
+console.log((bt).diff(et, 'days'));
+
+
        return (
          <ScrollView>
          <Card>
@@ -69,6 +95,10 @@ class TarlaUpdate extends Component {
 <CardSection>
 <Text style={{ flex: 1 }}>Ekim Tarihi:</Text>
 <Text style={{ flex: 1 }}>{this.state.ekimTarihi}</Text>
+</CardSection>
+<CardSection>
+<Text style={{ flex: 1 }}>Geçen Süre:</Text>
+<Text style={{ flex: 1 }}>{bt.diff(et, 'days')} Gün</Text>
 </CardSection>
 
 <CardSection>

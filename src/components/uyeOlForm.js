@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { TextInput, Alert, View } from 'react-native';
+import { TextInput, Alert, View, ImageBackground, StyleSheet, Dimensions, TouchableOpacity, Text } from 'react-native';
 import { connect } from 'react-redux';
 import { adChangeduye, soyadChangeduye,
    emailChangeduye, passwordChangeduye, loginUseruye } from '../actions';
-import { Button, Card, CardSection, Spinner } from '../ortak';
+import { Spinner } from '../ortak';
+var { height, width } = Dimensions.get('window');
 
 
 class uyeOlForm extends Component {
@@ -35,71 +36,121 @@ class uyeOlForm extends Component {
   }
 
   renderButtonuye() {
+
     if (!this.props.loading) {
-      return <Button onPress={this.clickLoginuye.bind(this)}> ÜYE OL </Button>;
-    }
-    return <Spinner size="small" />;
+      return  <TouchableOpacity onPress={this.clickLoginuye.bind(this)} style={styles.buttonStyle}>
+        <Text style={styles.textStyle}> Onay </Text>
+        </TouchableOpacity>
+            }
+          return <Spinner size="small" />;
   }
-  render() {
-    const { inputStyle } = styles;
-    return (
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
-      <Card>
-      <CardSection>
+    render() {
+        const { TextInputStyle } = styles;
+        return (
+          <ImageBackground source={require('../images/uyeOlTarla.jpg')}
+          style={styles.backgroundImage} >
+        <View style={{flex:1 ,marginTop: height/6}}>
+
         <TextInput
           placeholder="Ad"
-          style={inputStyle}
+          style={TextInputStyle}
           value={this.props.ad}
           onChangeText={ad => this.props.adChangeduye(ad)}
         />
-      </CardSection>
 
-      <CardSection>
         <TextInput
           placeholder="Soyad"
-          style={inputStyle}
+          style={TextInputStyle}
           value={this.props.soyad}
           onChangeText={soyad => this.props.soyadChangeduye(soyad)}
         />
-      </CardSection>
+        <TextInput
+          placeholder="E-mail"
+          style={TextInputStyle}
+          value={this.props.email}
+          onChangeText={email => this.props.emailChangeduye(email)}
+        />
 
-        <CardSection>
-          <TextInput
-            placeholder="E-mail"
-            style={inputStyle}
-            value={this.props.email}
-            onChangeText={email => this.props.emailChangeduye(email)}
-          />
-        </CardSection>
-
-        <CardSection>
         <TextInput
           secureTextEntry
           placeholder="Şifre"
-          style={inputStyle}
+          style={TextInputStyle}
           value={this.props.password}
           onChangeText={password => this.props.passwordChangeduye(password)}
         />
-        </CardSection>
-        <CardSection>
-          {this.renderButtonuye()}
-        </CardSection>
-      </Card>
-      </View>
-    );
-  }
+
+        <TextInput
+          secureTextEntry
+          placeholder="Şifre"
+          style={TextInputStyle}
+          value={this.props.password}
+          onChangeText={password => this.props.passwordChangeduye(password)}
+        />
+
+        {this.renderButtonuye()}
+
+                </View>
+  </ImageBackground>
+);
 }
+}
+const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        width: width,
+        height: height,
+        //resizeMode: 'cover'
+    },
+    textStyle: {
+      alignSelf: 'stretch',
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: '600',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative'
 
-const styles = {
+    },
 
-  inputStyle: {
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    flex: 1
-  }
+      TextInputStyle: {
+        alignSelf: 'stretch',
+        color: '#636564',
+        fontSize: 16,
+        fontWeight: '600',
+        backgroundColor: '#ffffff99',
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#636564',
+        paddingTop: 10,
+        paddingBottom: 10,
+        marginTop: 5,
+        marginLeft: 35,
+        marginRight: 35,
+        // flexDirection: 'row',
+        position: 'relative'
 
-};
+      },
+      buttonStyle: {
+
+        backgroundColor: '#e3b64399',
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#636564',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft:70,
+          paddingRight:50,
+        marginTop:5,
+        marginLeft: 80,
+        marginRight: 80,
+        justifyContent: 'center',
+        alignItems: 'center',
+        //  flexDirection: 'row',
+        position: 'relative'
+
+      }
+    }
+);
 const mapStateToProps = ({ uyeOlResponse }) => {
   const { ad, soyad, email, password, loading } = uyeOlResponse;
   return {

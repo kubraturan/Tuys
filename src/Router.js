@@ -16,22 +16,33 @@ import konumEkleMap from '../map/appOpen';
  class RouterComponent extends React.Component {
      render() {
     return (
-      <Router sceneStyle={{ marginTop: 65 }}>
+      <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}>
       <Scene key="kimlik">
-      <Scene key="ilkEkran" component={ilkEkranForm} title="İlk Ekran" />
-      <Scene key="girisYap" component={LoginForm} title="Giris Ekrani" />
+      <Scene key="ilkEkran" component={ilkEkranForm} />
+      <Scene
+       key="girisYap"
+       component={LoginForm}
+       style={{
+          color: '#000',
+         fontSize: 16,
+         fontWeight: '600',
+
+        }}
+
+      title="Giriş Sayfası" />
       <Scene key="uyeOl" component={uyeOlForm} title="Üye Ol" />
       </Scene>
 
       <Scene key="main">
 
       <Scene
+
         key="profilform"
         component={profilForm}
         title="Profil Sayfası"
       />
         <Scene
-          onRight={() => Actions.TarlaEkleForm()}
+          onRight={() => Actions.konumEkleMap()}
           rightTitle="Yeni Tarla"
           key="tarlaList"
           component={TarlaList}
@@ -67,12 +78,12 @@ import konumEkleMap from '../map/appOpen';
         <Scene
           key="tarlaListMaliyet"
           component={tarlaListMaliyet}
-          title="Toplam Maliyet Görüntüle"
+          title="Toplam Maliyet"
         />
         <Scene
           key="mapMarkerList"
           component={mapMarkerList}
-          title="mapMarkerList"
+          title="Haritada Tarlalarım"
         />
 
 
@@ -81,5 +92,23 @@ import konumEkleMap from '../map/appOpen';
     );
   }
 }
+const styles = {
+  navBar: {
+      backgroundColor: '#63656490',
+  },
+  navBarTitle:{
+      color: '#fff',
+      alignSelf: 'center',
+      fontSize: 16,
+      fontWeight: '600',
+  },
+  barButtonTextStyle:{
+      color: '#FFFFFF'
+  },
+  barButtonIconStyle:{
+      tintColor: 'rgb(255,255,255)'
+  },
+}
+
 
 export default RouterComponent;

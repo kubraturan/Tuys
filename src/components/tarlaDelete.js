@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Button, Card, CardSection, Spinner } from '../ortak';
+import { TouchableOpacity, Text, StyleSheet, View } from 'react-native';
+import {  Card, CardSection, Spinner } from '../ortak';
 import { tarlaDelete } from '../actions';
 
 class TarlaDelete extends Component {
@@ -61,25 +62,75 @@ class TarlaDelete extends Component {
       clickDelete() {
         this.props.tarlaDelete({ uid: this.props.tarlalar.uid });
       }
-
     renderDeleteButton() {
       if (!this.props.loadingDelete) {
-        return <Button onPress={this.clickDelete.bind(this)}> Tarlayı Sil </Button>;
+        return (
+          <TouchableOpacity onPress={this.clickDelete.bind(this)} style={styles.buttonStyle}>
+            <Text style={styles.TextStyleCins}>Sil </Text>
+            </TouchableOpacity>
+        );
       }
       return <Spinner size="small" />;
     }
 
    render() {
     return (
-      <Card>
-      <CardSection>
+      <View style={{ flex: 1 }}>
+
        {this.renderDeleteButton()}
-      </CardSection>
-      </Card>
+
+      </View>
     );
   }
 }
 
+const styles = StyleSheet.create({
+    textStyle: {
+      alignSelf: 'stretch',
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: '600',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative'
+
+    },
+
+      TextStyleCins: {
+        alignSelf: 'stretch',
+        color: '#fff',
+        fontSize: 16,
+        fontWeight: '600',
+          paddingTop: 10,
+        paddingBottom: 10,
+        marginTop:5,
+        marginLeft: 35,
+        marginRight: 35,
+        //  flexDirection: 'row',
+        position: 'relative'
+
+      },
+      buttonStyle: {
+
+        backgroundColor: '#f00',
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#f00',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 40,
+          paddingRight: 50,
+        marginTop: 50,
+        marginLeft: 25,
+        marginRight: 25,
+        justifyContent: 'center',
+        alignItems: 'center',
+         flexDirection: 'row',
+        position: 'relative'
+
+      }
+    }
+);
 const mapToStateProps = ({ TarlaDeleteResponse }) => {
   const { loadingDelete } = TarlaDeleteResponse;
 

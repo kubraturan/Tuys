@@ -22,16 +22,31 @@ export default class BackgroundImage extends Component {
     render() {
         const { buttonStyle, textStyle } = styles;
         return (
-          <ImageBackground source={require('../images/ilkEkranArkaPlan.jpg')}
+          <ImageBackground source={require('./src/images/ilkEkranArkaPlan.jpg')}
           style={styles.backgroundImage} >
-        <View style={{flex:1 ,marginTop: height/3}}>
-          <TouchableOpacity onPress={this.clickGirisSayfasi} style={buttonStyle}>
-          <Text style={textStyle}> Giriş Yap </Text>
+        <View style={{flex:1 ,marginTop: height/2}}>
+
+        <TouchableOpacity onPress={this.clickuyeOl} style={[buttonStyle, {backgroundColor:'#cfab7795'}]}>
+        <Text style={textStyle}> Tarla Ekle </Text>
+        </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.clickGirisSayfasi} style={[buttonStyle, {backgroundColor:'#9ebc3899'}]}>
+          <Text style={textStyle}> Tarlalarım </Text>
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.clickGirisSayfasi} style={[buttonStyle, {backgroundColor:'#594c4495'}]}>
+          <Text style={textStyle}> Haritada Tarlalarım </Text>
           </TouchableOpacity>
 
-          <TouchableOpacity onPress={this.clickuyeOl} style={buttonStyle}>
-          <Text style={textStyle}> Üye Ol </Text>
+
+          <TouchableOpacity onPress={this.clickuyeOl} style={[buttonStyle, {backgroundColor:'#680f2b95'}]}>
+          <Text style={textStyle}> Toplam Maliyet </Text>
           </TouchableOpacity>
+
+          <TouchableOpacity onPress={this.clickuyeOl} style={[buttonStyle, {backgroundColor:'#9dcff495'}]}>
+          <Text style={textStyle}> Hava Durumu </Text>
+          </TouchableOpacity>
+
+
 </View>
   </ImageBackground>
 );
@@ -39,7 +54,7 @@ export default class BackgroundImage extends Component {
 }
 const styles = StyleSheet.create({
     backgroundImage: {
-      //  flex: 1,
+        flex: 1,
         width: width,
         height: height,
         //resizeMode: 'cover'
@@ -59,8 +74,8 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         borderColor: '#636564',
         marginTop:5,
-        marginLeft: 50,
-        marginRight: 50,
+        marginLeft: 40,
+        marginRight: 40,
         shadowOffset: {width:5, height:2 },
         shadowOpacity:5,
 

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { Text, ScrollView } from 'react-native';
+import { Text, ScrollView, StyleSheet, View, Image } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
-import { Card, CardSection } from '../ortak';
+import { CardSection } from '../ortak';
 import { tarlalariDuzenle } from '../actions';
 
 
@@ -56,8 +56,6 @@ class TarlaUpdate extends Component {
      maliyetCinsiGubreTuru,
    alanCinsi });
  }
-
-
    render() {
 //bugunun gun bilgisini diziye at
 const bugununTarihi = [];
@@ -73,71 +71,106 @@ console.log(bt);
 
 moment().format('DD');
 ekiminTarihi.push(
-parseFloat(moment(this.state.ekimTarihi,"DD/MM/YYYY").format('YYYY')),
-parseFloat(moment(this.state.ekimTarihi,"DD/MM/YYYY").format('MM')),
-parseFloat(moment(this.state.ekimTarihi,"DD/MM/YYYY").format('DD'))
+parseFloat(moment(this.state.ekimTarihi, "DD/MM/YYYY").format('YYYY')),
+parseFloat(moment(this.state.ekimTarihi, "DD/MM/YYYY").format('MM')),
+parseFloat(moment(this.state.ekimTarihi, "DD/MM/YYYY").format('DD'))
 );
 const bt = moment(bugununTarihi);
 const et = moment(ekiminTarihi);
 console.log(et);
 //ektiğin günden geçen zaman
 console.log((bt).diff(et, 'days'));
-
-
        return (
          <ScrollView>
-         <Card>
+         <View>
          <CardSection>
-<Text style={{ flex: 1 }}>Tarla Adı:</Text>
-<Text style={{ flex: 1 }}>{this.state.tarlaAdi}</Text>
+         <Image source={require('../images/tarlaAdi.png')}
+       />
+
+
+     <Text style={styles.TextStyle}>Tarla Adı:</Text>
+<Text style={styles.TextStyle}>{this.state.tarlaAdi}</Text>
 </CardSection>
 
 <CardSection>
-<Text style={{ flex: 1 }}>Ekim Tarihi:</Text>
-<Text style={{ flex: 1 }}>{this.state.ekimTarihi}</Text>
+<Image source={require('../images/ekimTarihi.png')}
+/>
+<Text style={styles.TextStyle}>Ekim Tarihi:</Text>
+<Text style={styles.TextStyle}>{this.state.ekimTarihi}</Text>
 </CardSection>
 <CardSection>
-<Text style={{ flex: 1 }}>Geçen Süre:</Text>
-<Text style={{ flex: 1 }}>{bt.diff(et, 'days')} Gün</Text>
+<Image source={require('../images/gecenZaman.png')}
+/>
+<Text style={styles.TextStyle}>Geçen Süre:</Text>
+<Text style={styles.TextStyle}>{bt.diff(et, 'days')} Gün</Text>
 </CardSection>
 
 <CardSection>
-<Text style={{ flex: 1 }}>Ürün Adı:</Text>
-<Text style={{ flex: 1 }}>{this.state.urunAdi}</Text>
+<Image source={require('../images/urunAdi.png')}
+/>
+<Text style={styles.TextStyle}>Ürün Adı:</Text>
+<Text style={styles.TextStyle}>{this.state.urunAdi}</Text>
 </CardSection>
 <CardSection>
-<Text style={{ flex: 1 }}>Ürün Çeşidi:</Text>
-<Text style={{ flex: 1 }}>{this.state.urunCesidi}</Text>
+<Image source={require('../images/urunCesidi.png')}
+/>
+<Text style={styles.TextStyle}>Ürün Çeşidi:</Text>
+<Text style={styles.TextStyle}>{this.state.urunCesidi}</Text>
 </CardSection>
 <CardSection>
-<Text style={{ flex: 1 }}>Gübre Türü:</Text>
-<Text style={{ flex: 1 }}>{this.state.gubreTuru}</Text>
+<Image source={require('../images/gubreTuru.png')}
+/>
+<Text style={styles.TextStyle}>Gübre Türü:</Text>
+<Text style={styles.TextStyle}>{this.state.gubreTuru}</Text>
 </CardSection>
 <CardSection>
-<Text style={{ flex: 1 }}>Gübre  Çeşidi:</Text>
-<Text style={{ flex: 1 }}>{this.state.gubreCesidi}</Text>
+<Image source={require('../images/gubreCesidi.png')}
+/>
+<Text style={styles.TextStyle}>Gübre  Çeşidi:</Text>
+<Text style={styles.TextStyle}>{this.state.gubreCesidi}</Text>
 </CardSection>
 <CardSection>
-<Text style={{ flex: 1 }}>Tarım Tipi:</Text>
-<Text style={{ flex: 1 }}>{this.state.tarimMetodu}</Text>
+<Image source={require('../images/tarimTipi.png')}
+/>
+<Text style={styles.TextStyle}>Tarım Tipi:</Text>
+<Text style={styles.TextStyle}>{this.state.tarimMetodu}</Text>
 </CardSection>
 <CardSection>
-<Text style={{ flex: 1 }}>Ürün Miktarı :</Text>
-<Text style={{ flex: 1 }}>{this.state.urunMiktari} {this.state.urunMiktariCinsi}</Text>
+<Image source={require('../images/miktar.png')}
+/>
+<Text style={styles.TextStyle}>Ürün Miktarı :</Text>
+<Text style={styles.TextStyle}>{this.state.urunMiktari} {this.state.urunMiktariCinsi}</Text>
 </CardSection>
 <CardSection>
-<Text style={{ flex: 1 }}>Gübre Miktarı:</Text>
-<Text style={{ flex: 1 }}>{this.state.gubreMiktari} {this.state.gubreMiktariCinsi}</Text>
+<Image source={require('../images/miktar.png')}
+/>
+<Text style={styles.TextStyle}>Gübre Miktarı:</Text>
+<Text style={styles.TextStyle}>{this.state.gubreMiktari} {this.state.gubreMiktariCinsi}</Text>
 </CardSection>
 <CardSection>
-<Text style={{ flex: 1 }}>Ekilecek Alan Boyutu:</Text>
-<Text style={{ flex: 1 }}>{this.state.ekilecekAlanBoyutu} {this.state.alanCinsi}</Text>
+<Image source={require('../images/ekildigiAlan.png')}
+/>
+<Text style={styles.TextStyle}>Ekilecek Alan Boyutu:</Text>
+<Text style={styles.TextStyle}>{this.state.ekilecekAlanBoyutu} {this.state.alanCinsi}</Text>
 </CardSection>
- </Card>
+ </View>
              </ScrollView>
        );
      }
    }
+   const styles = StyleSheet.create({
+
+     TextStyle: {
+       flex: 1,
+       alignSelf: 'stretch',
+       color: '#ffffff',
+       fontSize: 17,
+       paddingLeft: 5,
+       fontWeight: '600',
+      flexDirection: 'row',
+       position: 'relative'
+
+     } });
 
 
 const mapToStateProps = ({ tarlaUpdateResponse }) => {

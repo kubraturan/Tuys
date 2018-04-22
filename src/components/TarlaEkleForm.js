@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, Picker, ScrollView } from 'react-native';
+import { Text, TextInput, Picker, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker'
 import { Button, Card, CardSection } from '../ortak';
@@ -60,12 +60,12 @@ class TARLAEKLEFORM extends Component {
   urunSelect(urun) {
     if (urun === 'Buğday') {
         return (<Picker
-                  style={{ flex: 1 }}
+                  style={styles.textStyle}
                   selectedValue={this.props.urunCesidi}
   onValueChange={urunCesidi =>
      this.props.tarlaEkleChanged({ props: 'urunCesidi', value: urunCesidi })}
         >
-        <PickerItem label="Ekilecek Ürün Çeşidi Giriniz" value="Ekilecek Ürün Çeşidi Giriniz" />
+        <PickerItem label="Seçiniz" value="Seçiniz" />
             <PickerItem label="Kavuzlu Buğday" value="Kavuzlu Buğday" />
               <PickerItem label="Siyez" value="Siyez" />
               <PickerItem label="Makarnalık Buğday" value="Makarnalık Buğday" />
@@ -77,12 +77,12 @@ class TARLAEKLEFORM extends Component {
               </Picker>);
     } else if (urun === 'Arpa') {
         return (<Picker
-                  style={{ flex: 1 }}
+              style={styles.textStyle}
                   selectedValue={this.props.urunCesidi}
 onValueChange={urunCesidi =>
    this.props.tarlaEkleChanged({ props: 'urunCesidi', value: urunCesidi })}
         >
-  <PickerItem label="Ekilecek Ürün Çeşidi Giriniz" value="Ekilecek Ürün Çeşidi Giriniz" />
+  <PickerItem label="Seçiniz" value="Seçiniz" />
               <PickerItem label="Beyşehir 98" value="Beyşehir 98" />
                 <PickerItem label="Tarm 98" value="Tarm 98" />
                 <PickerItem label="Konevi 98" value="Konevi 98" />
@@ -94,7 +94,7 @@ onValueChange={urunCesidi =>
   }
 
   return (<Picker
-            style={{ flex: 1 }}
+            style={styles.textStyle}
             selectedValue={this.props.urunCesidi}
 onValueChange={urunCesidi =>
 this.props.tarlaEkleChanged({ props: 'urunCesidi', value: urunCesidi })}
@@ -103,27 +103,26 @@ this.props.tarlaEkleChanged({ props: 'urunCesidi', value: urunCesidi })}
 
 </Picker>);
 }
-
   gubreCesidiSelect(urun) {
     if (urun === 'Buğday') {
         return (<Picker
-                  style={{ flex: 1 }}
+                style={styles.textStyle}
                   selectedValue={this.props.gubreCesidi}
   onValueChange={gubreCesidi =>
      this.props.tarlaEkleChanged({ props: 'gubreCesidi', value: gubreCesidi })}
         >
-<PickerItem label="Gübre Çeşidi Giriniz" value="Gübre Çeşidi Giriniz" />
+<PickerItem label="Seçiniz" value="Seçiniz" />
               <PickerItem label="Gübre Buğday" value="gübrebugday" />
                 <PickerItem label="GB" value="gb" />
                 </Picker>);
     } else if (urun === 'Arpa') {
         return (<Picker
-                  style={{ flex: 1 }}
+                style={styles.textStyle}
                   selectedValue={this.props.gubreCesidi}
 onValueChange={gubreCesidi =>
    this.props.tarlaEkleChanged({ props: 'gubreCesidi', value: gubreCesidi })}
         >
-<PickerItem label="Gübre Çeşidi Giriniz" value="Gübre Çeşidi Giriniz" />
+<PickerItem label="Seçiniz" value="Seçiniz" />
               <PickerItem label="Gübre Arpa" value="gübrearpa" />
               <PickerItem label="ga" value="ga" />
 
@@ -131,7 +130,7 @@ onValueChange={gubreCesidi =>
                 </Picker>);
   }
     return (<Picker
-              style={{ flex: 1 }}
+              style={styles.textStyle }
               selectedValue={this.props.gubreCesidi}
 onValueChange={gubreCesidi =>
 this.props.tarlaEkleChanged({ props: 'gubreCesidi', value: gubreCesidi })}
@@ -144,10 +143,12 @@ this.props.tarlaEkleChanged({ props: 'gubreCesidi', value: gubreCesidi })}
     return (
       <ScrollView>
       <Card>
+
       <CardSection>
-      <Text style={{ flex: 1 }}>Tarla Adı Giriniz:</Text>
+      <Image source={require('../images/tarlaAdi.png')}
+    />
       <TextInput
-      style={{ flex: 1 }}
+      style={ styles.textStyle }
         placeholder={'Tarla Adı'}
         selectedValue={this.props.tarlaAdi}
         onChangeText={tarlaAdi =>
@@ -159,7 +160,7 @@ this.props.tarlaEkleChanged({ props: 'gubreCesidi', value: gubreCesidi })}
 
       <CardSection>
         <DatePicker
-        style={{ flex: 1, width: 200 }}
+        style={{ flex: 1, width: 200, color: '#fff' }}
         date={this.props.ekimTarihi}
         mode="date"
         spaceholder="Tarih Giriniz"
@@ -189,29 +190,36 @@ onDateChange={(ekimTarihi) => { this.props.tarlaEkleChanged({ props: 'ekimTarihi
       </CardSection>
 
   <CardSection>
+  <Image source={require('../images/urunAdi.png')}
+/>
       <Picker
-              style={{ flex: 1 }}
+            style={styles.textStyle}
               selectedValue={this.props.urunAdi}
       onValueChange={urunAdi => this.props.tarlaEkleChanged({ props: 'urunAdi', value: urunAdi })}
             >
-            <PickerItem label="Ürün Giriniz" value="Ürün Giriniz" />
+            <PickerItem label="Ürün" value="Ürün" />
             <PickerItem label="Arpa" value="Arpa" />
             <PickerItem label="Buğday" value="Buğday" />
             </Picker>
   </CardSection>
 
   <CardSection>
+  <Image source={require('../images/urunCesidi.png')}
+/>
+<Text style={styles.textStyle}>Ekilecek Ürün Çeşidi</Text>
+
             {this.urunSelect(this.props.urunAdi)}
   </CardSection>
-                <CardSection>
-
+    <CardSection>
+    <Image source={require('../images/tarimTipi.png')}
+/>
       <Picker
-        style={{ flex: 1 }}
+    style={styles.textStyle}
         selectedValue={this.props.tarimMetodu}
         onValueChange={tarimMetodu =>
         this.props.tarlaEkleChanged({ props: 'tarimMetodu', value: tarimMetodu })}
                 >
-                <PickerItem label="Tarım Metodu Giriniz:" value="Tarım Metodu Giriniz:" />
+                <PickerItem label="Tarım Metodu" value="Tarım Metodu" />
         <PickerItem label="İntansif (Modern-Yoğun) Tarım"
          value="intansif (Modern-Yoğun) Tarım" />
         <PickerItem label="Ekstansif (ilkel-Kaba-Yaygın) Tarım"
@@ -224,14 +232,15 @@ onDateChange={(ekimTarihi) => { this.props.tarlaEkleChanged({ props: 'ekimTarihi
         </CardSection>
 
         <CardSection>
-
+        <Image source={require('../images/gubreTuru.png')}
+    />
 <Picker
-style={{ flex: 1 }}
+style={styles.textStyle}
 selectedValue={this.props.gubreTuru}
 onValueChange={gubreTuru =>
 this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
         >
-<PickerItem label="Gübre Türü Giriniz:" value="Gübre Türü Giriniz:" />
+<PickerItem label="Gübre Türü" value="Gübre Türü" />
 <PickerItem label="Hayvan"
  value="Hayvan" />
 <PickerItem label="Yeşil Gübre"
@@ -248,16 +257,19 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
 </CardSection>
 
         <CardSection>
-
+        <Image source={require('../images/gubreCesidi.png')}
+      />
+      <Text style={styles.textStyle}>Gübre Çeşidi</Text>
           {this.gubreCesidiSelect(this.props.urunAdi)}
 
         </CardSection>
 
         <CardSection>
-
-        <Text style={{ flex: 1 }}>Ekilecek Ürün Miktarını Giriniz:</Text>
+        <Image source={require('../images/miktar.png')}
+    />
         <TextInput
-        style={{ flex: 1 }}
+        style={styles.textStyle}
+        placeholderStyle={styles.textStyle}
           placeholder={'Ürün Miktarı'}
           selectedValue={this.props.urunMiktari}
           onChangeText={urunMiktari =>
@@ -267,7 +279,7 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
 
 
           <Picker
-                  style={{ flex: 1 }}
+                   style={styles.textStyle}
                   selectedValue={this.props.urunMiktariCinsi}
         onValueChange={urunMiktariCinsi =>
         this.props.tarlaEkleChanged({ props: 'urunMiktariCinsi', value: urunMiktariCinsi })}
@@ -283,11 +295,10 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
 
 
                 <CardSection>
-
-                <Text style={{ flex: 1 }}>Gübre Miktarı Giriniz:</Text>
-
+                <Image source={require('../images/miktar.png')}
+            />
                                   <TextInput
-                                  style={{ flex: 1 }}
+                                   style={styles.textStyle}
                                     placeholder={"Gübre Miktarı"}
                                     onChangeText={gubreMiktari =>
           this.props.tarlaEkleChanged({ props: 'gubreMiktari',
@@ -295,7 +306,7 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
                                     value={this.props.gubreMiktari}
                                   />
     <Picker
-                                          style={{ flex: 1 }}
+                                           style={styles.textStyle}
                                           selectedValue={this.props.gubreMiktariCinsi}
                                 onValueChange={gubreMiktariCinsi =>
           this.props.tarlaEkleChanged({ props: 'gubreMiktariCinsi', value: gubreMiktariCinsi })}
@@ -308,10 +319,10 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
 
                                   </CardSection>
                 <CardSection>
-
-                <Text style={{ flex: 1 }}>Ekilecek Ürün Maliyeti Giriniz:</Text>
+                <Image source={require('../images/toplamMaliyet.png')}
+            />
                 <TextInput
-                style={{ flex: 1 }}
+              style={styles.textStyle}
                   placeholder={'Ürün Maliyeti'}
                   selectedValue={this.props.urunMaliyet}
                   onChangeText={urunMaliyet =>
@@ -320,7 +331,7 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
                   value={this.props.urunMaliyet} />
 
                   <Picker
-                          style={{ flex: 1 }}
+  style={styles.textStyle}
                           selectedValue={this.props.maliyetCinsiUrun}
                 onValueChange={maliyetCinsiUrun =>
                 this.props.tarlaEkleChanged({ props: 'maliyetCinsiUrun', value: maliyetCinsiUrun })}
@@ -331,17 +342,12 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
                         </Picker>
 
                         </CardSection>
-
-
-
-
-
-
         <CardSection>
-        <Text style={{ flex: 1 }}>Ekilecek Gübre Çeşidi Maliyeti Giriniz:</Text>
+        <Image source={require('../images/gubreCesidi.png')}
+    />
         <TextInput
-        style={{ flex: 1 }}
           placeholder={'Gübre Çeşidi Maliyeti'}
+          style={styles.textStyle}
           selectedValue={this.props.gubreCesitMaliyet}
           onChangeText={gubreCesitMaliyet =>
              this.props.tarlaEkleChanged({ props: 'gubreCesitMaliyet', value: gubreCesitMaliyet })}
@@ -349,8 +355,8 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
           value={this.props.gubreCesitMaliyet} />
 
           <Picker
-                  style={{ flex: 1 }}
-                  selectedValue={this.props.maliyetCinsiGubreCesidi}
+            style={styles.textStyle}
+                selectedValue={this.props.maliyetCinsiGubreCesidi}
         onValueChange={maliyetCinsiGubreCesidi =>
   this.props.tarlaEkleChanged({ props: 'maliyetCinsiGubreCesidi', value: maliyetCinsiGubreCesidi })}
                 >
@@ -363,10 +369,11 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
 
 
                 <CardSection>
-                <Text style={{ flex: 1 }}>Ekilecek Gübre Türü Maliyeti Giriniz:</Text>
+                <Image source={require('../images/gubreTuru.png')}
+            />
                 <TextInput
-                style={{ flex: 1 }}
-                  placeholder={'Ekilecek Gübre Türü Maliyeti'}
+                 placeholder={'Gübre Türü Maliyeti'}
+                  style={styles.textStyle}
                   selectedValue={this.props.gubreTuruMaliyet}
                   onChangeText={gubreTuruMaliyet =>
          this.props.tarlaEkleChanged({ props: 'gubreTuruMaliyet', value: gubreTuruMaliyet })}
@@ -374,8 +381,8 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
                   value={this.props.gubreTuruMaliyet} />
 
                   <Picker
-                          style={{ flex: 1 }}
-                          selectedValue={this.props.maliyetCinsiGubreTuru}
+                    style={styles.textStyle}
+                        selectedValue={this.props.maliyetCinsiGubreTuru}
                 onValueChange={maliyetCinsiGubreTuru =>
   this.props.tarlaEkleChanged({ props: 'maliyetCinsiGubreTuru', value: maliyetCinsiGubreTuru })}
                         >
@@ -387,10 +394,11 @@ this.props.tarlaEkleChanged({ props: 'gubreTuru', value: gubreTuru })}
 
 
   <CardSection>
-    <Text style={{ flex: 1 }}>Ekilecek Alan Boyutunu Giriniz:</Text>
-  <TextInput
-  style={{ flex: 1 }}
+  <Image source={require('../images/ekildigiAlan.png')}
+/>
+    <TextInput
     placeholder={'Ekilecek Alan Boyutu'}
+    style={styles.textStyle}
     selectedValue={this.props.ekilecekAlanBoyutu}
     onChangeText={ekilecekAlanBoyutu =>
 this.props.tarlaEkleChanged({ props: 'ekilecekAlanBoyutu', value: ekilecekAlanBoyutu })}
@@ -398,7 +406,7 @@ this.props.tarlaEkleChanged({ props: 'ekilecekAlanBoyutu', value: ekilecekAlanBo
     value={this.props.ekilecekAlanBoyutu} />
 
     <Picker
-            style={{ flex: 1 }}
+      style={styles.textStyle}
             selectedValue={this.props.alanCinsi}
             onValueChange={alanCinsi =>
         this.props.tarlaEkleChanged({ props: 'alanCinsi', value: alanCinsi })}
@@ -408,16 +416,47 @@ this.props.tarlaEkleChanged({ props: 'ekilecekAlanBoyutu', value: ekilecekAlanBo
 
           </Picker>
 </CardSection>
-
-
-                        <CardSection>
-   <Button onPress={this.clickSave.bind(this)}> Kaydet </Button>
+  <CardSection>
+  <TouchableOpacity onPress={this.clickSave.bind(this)} style={styles.buttonStyle}>
+  <Text style={styles.textStyleCins}>Kaydet </Text>
+  </TouchableOpacity>
     </CardSection>
   </Card>
     </ScrollView>
     );
   }
 }
+
+const styles = StyleSheet.create({
+
+    textStyleCins: {
+      flex: 1,
+        alignSelf: 'center',
+        color: '#085d29',
+        fontSize: 16,
+        fontWeight: '600',
+        paddingTop: 10,
+        paddingBottom: 10
+      },
+      textStyle: {
+        flex: 1,
+          alignSelf: 'center',
+          color: '#000',
+          fontSize: 16,
+          fontWeight: '600',
+          paddingTop: 10,
+          paddingBottom: 10
+        },
+        buttonStyle: {
+          flex:1,
+          alignSelf: 'stretch',
+          backgroundColor: '#ffffff95',
+          borderRadius: 5,
+          borderWidth: 1,
+          borderColor: '#fff',
+          marginLeft: 5,
+          marginRight: 5
+        } });
 
 
 const mapToStateProps = ({ TarlaEkleResponse }) => {

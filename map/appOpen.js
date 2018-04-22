@@ -37,7 +37,7 @@ class GeolocationExample extends Component {
         });
             console.log(position.coords.latitude);
       },
-      (error) => this.setState({ error: Alert.alert('deneme')
+      (error) => this.setState({ error: Alert.alert('Lütfen Konumunuzu Açınız ve Tekrar Deneyiniz..')
     }),
       console.log('error'),
       { enableHighAccuracy: true, timeout: 50000, maximumAge: 1000 },
@@ -77,8 +77,8 @@ class GeolocationExample extends Component {
         <MapView.Marker
            coordinate={{ latitude: this.state.region.latitude,
              longitude: this.state.region.longitude }}
-           title="evim"
-           description="Evim."
+           title="Nerdeyim?"
+           description="Şuan Burdayım."
         />
         </MapView>
         </View>

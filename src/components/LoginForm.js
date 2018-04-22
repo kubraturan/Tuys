@@ -1,8 +1,20 @@
 import React, { Component } from 'react';
-import { TextInput, Alert, View } from 'react-native';
+import {
+  StyleSheet,
+  TextInput,
+  Text,
+  Image,
+  View,
+  Alert,
+  ImageBackground,
+  Dimensions,
+  TouchableOpacity
+} from 'react-native';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 import { emailChanged, passwordChanged, loginUser } from '../actions';
-import { Button, Card, CardSection, Spinner } from '../ortak';
+import { Spinner } from '../ortak';
+var { height, width } = Dimensions.get('window');
 
 
 class LoginForm extends Component {
@@ -35,53 +47,103 @@ class LoginForm extends Component {
 
   renderButton() {
     if (!this.props.loading) {
-      return <Button onPress={this.clickLogin.bind(this)}> GİRİŞ </Button>;
-    }
-    return <Spinner size="small" />;
+      return  <TouchableOpacity onPress={this.clickLogin.bind(this)} style={styles.buttonStyle}>
+        <Text style={styles.textStyle}> Giriş Yap </Text>
+        </TouchableOpacity>
+            }
+          return <Spinner size="small" />;
   }
-  render() {
-    const { inputStyle } = styles;
-    return (
-      <View style={{ flex: 1, backgroundColor: 'white' }}>
-      <Card>
-        <CardSection>
-          <TextInput
-            placeholder="E-mail"
-            style={inputStyle}
-            value={this.props.email}
-            onChangeText={email => this.props.emailChanged(email)}
-          />
-        </CardSection>
 
-        <CardSection>
+    render() {
+        const { TextInputStyle } = styles;
+        return (
+          <ImageBackground source={require('../images/girisSayfasiTarla.png')}
+          style={styles.backgroundImage} >
+        <View style={{flex:1 ,marginTop: height/4}}>
+
+
         <TextInput
-          secureTextEntry
-          placeholder="Şifre"
-          style={inputStyle}
-          value={this.props.password}
-          onChangeText={password => this.props.passwordChanged(password)}
+          placeholder="E-mail"
+          style={TextInputStyle}
+          value={this.props.email}
+          onChangeText={email => this.props.emailChanged(email)}
         />
-        </CardSection>
 
-        <CardSection>
-          {this.renderButton()}
-        </CardSection>
-      </Card>
-      </View>
-    );
-  }
+      <TextInput
+        secureTextEntry
+        placeholder="Şifre"
+        style={TextInputStyle}
+        value={this.props.password}
+        onChangeText={password => this.props.passwordChanged(password)}
+      />
+
+
+      {this.renderButton()}
+
+
+                </View>
+  </ImageBackground>
+);
 }
+}
+const styles = StyleSheet.create({
+    backgroundImage: {
+        flex: 1,
+        width: width,
+        height: height,
+        //resizeMode: 'cover'
+    },
+    textStyle: {
+      alignSelf: 'stretch',
+      color: '#fff',
+      fontSize: 16,
+      fontWeight: '600',
+      justifyContent: 'center',
+      alignItems: 'center',
+      position: 'relative'
 
-const styles = {
+    },
 
-  inputStyle: {
-    paddingRight: 5,
-    paddingLeft: 5,
-    fontSize: 18,
-    flex: 1
-  }
+      TextInputStyle: {
+        alignSelf: 'stretch',
+        color: '#636564',
+        fontSize: 16,
+        fontWeight: '600',
+        backgroundColor: '#ffffff99',
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#636564',
+        paddingTop: 10,
+        paddingBottom: 10,
+        marginTop:5,
+        marginLeft: 35,
+        marginRight: 35,
+        //  flexDirection: 'row',
+        position: 'relative'
 
-};
+      },
+      buttonStyle: {
+
+        backgroundColor: '#9ebc3899',
+        borderRadius: 8,
+        borderWidth: 1,
+        borderColor: '#636564',
+        paddingTop: 5,
+        paddingBottom: 5,
+        paddingLeft: 40,
+          paddingRight:50,
+        marginTop:5,
+        marginLeft: 80,
+        marginRight: 80,
+        justifyContent: 'center',
+        alignItems: 'center',
+         flexDirection: 'row',
+        position: 'relative'
+
+      }
+    }
+);
+
 const mapStateToProps = ({ kimlikdogrulamaResponse }) => {
   const { email, password, loading } = kimlikdogrulamaResponse;
   return {

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, Picker, ScrollView } from 'react-native';
+import { Text, TextInput, Picker, ScrollView, Image, TouchableOpacity, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker';
 import { Button, Card, CardSection, Spinner } from '../ortak';
@@ -11,8 +11,8 @@ class TarlaUpdate extends Component {
 
 
  state = {
-   konumEkleLongitude: '',
-   konumEkleLatitude: '',
+   latitude: '',
+  longitude: '',
    tarlaAdi: '',
    ekimTarihi: '',
    urunAdi: '',
@@ -36,8 +36,8 @@ alanCinsi: ''
         };
  componentWillMount() {
    const {
-     konumEkleLongitude,
-     konumEkleLatitude,
+     latitude,
+    longitude,
      tarlaAdi,
    ekimTarihi,
       urunAdi,
@@ -53,13 +53,14 @@ alanCinsi: ''
           gubreMiktariCinsi,
            tarimMetodu,
          ekilecekAlanBoyutu,
-         maliyetCinsiUrun,
-       maliyetCinsiGubreCesidi,
-     maliyetCinsiGubreTuru,
-   alanCinsi } = this.props.tarlalar;
+       maliyetCinsiUrun,
+     maliyetCinsiGubreCesidi,
+   maliyetCinsiGubreTuru,
+ alanCinsi } = this.props.tarlalar;
 
-   this.setState({ konumEkleLongitude,
-   konumEkleLatitude,
+   this.setState({
+     latitude,
+   longitude,
      tarlaAdi,
  ekimTarihi,
     urunAdi,
@@ -88,7 +89,7 @@ alanCinsi: ''
                  selectedValue={this.state.urunCesidi}
  onValueChange={urunCesidi => this.setState({ urunCesidi })}
        >
-         <PickerItem label="Ürün Çeşidi Giriniz" value="Ürün Çeşidi Giriniz" />
+         <PickerItem label="Seçiniz" value="Seçiniz" />
              <PickerItem label="Kavuzlu Buğday" value="Kavuzlu Buğday" />
                <PickerItem label="Siyez" value="Siyez" />
                <PickerItem label="Makarnalık Buğday" value="Makarnalık Buğday" />
@@ -104,7 +105,7 @@ alanCinsi: ''
                  selectedValue={this.state.urunCesidi}
 onValueChange={urunCesidi => this.setState({ urunCesidi })}
        >
-       <PickerItem label="Ürün Çeşidi Giriniz" value="Ürün Çeşidi Giriniz" />
+       <PickerItem label="Seçiniz" value="Seçiniz" />
              <PickerItem label="Beyşehir 98" value="Beyşehir 98" />
                <PickerItem label="Tarm 98" value="Tarm 98" />
                <PickerItem label="Konevi 98" value="Konevi 98" />
@@ -122,7 +123,7 @@ onValueChange={urunCesidi => this.setState({ urunCesidi })}
                  selectedValue={this.state.gubreCesidi}
   onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
        >
-       <PickerItem label="Gübre Türü Çeşidi Giriniz" value="Gübre Türü Çeşidi Giriniz" />
+       <PickerItem label="Seçiniz" value="Seçiniz" />
              <PickerItem label="Gübre Buğday" value="gübrebugday" />
                <PickerItem label="GB" value="gb" />
                </Picker>);
@@ -132,7 +133,7 @@ onValueChange={urunCesidi => this.setState({ urunCesidi })}
                  selectedValue={this.state.gubreCesidi}
 onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
        >
-       <PickerItem label="Gübre Türü Giriniz" value="Gübre Türü Giriniz" />
+       <PickerItem label="Seçiniz" value="Seçiniz" />
              <PickerItem label="Gübre Arpa" value="gübrearpa" />
                <PickerItem label="ga" value="ga" />
 
@@ -142,8 +143,8 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
 }
 
   clickUpdate() {
-    const { konumEkleLongitude,
-    konumEkleLatitude,
+    const { latitude,
+      longitude,
       tarlaAdi,
   ekimTarihi,
      urunAdi,
@@ -167,8 +168,8 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
 
     } = this.state;
 
-    this.props.tarlalariDuzenle({ konumEkleLongitude,
-    konumEkleLatitude,
+    this.props.tarlalariDuzenle({ latitude,
+    longitude,
       tarlaAdi,
   ekimTarihi,
      urunAdi,
@@ -192,7 +193,10 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
   }
   renderButton() {
     if (!this.props.loadingUpdate) {
-      return <Button onPress={this.clickUpdate.bind(this)}> Guncelle </Button>;
+      return (
+        <TouchableOpacity onPress={this.clickUpdate.bind(this)} style={styles.buttonStyle}>
+      <Text style={styles.textStyleCins}>Güncelle </Text>
+      </TouchableOpacity>);
     }
     return <Spinner size="small" />;
   }
@@ -203,49 +207,52 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
          <ScrollView>
          <Card>
          <CardSection>
-         <Text style={{ flex: 1 }}>Tarla Adı</Text>
-         <TextInput
-         style={{ flex: 1 }}
-           placeholder={'Tarla Adını'}
-           selectedValue={this.state.tarlaAdi}
-           onValueText={tarlaAdi => this.setState({ tarlaAdi })}
+         <Image source={require('../images/tarlaAdi.png')}
+       />
+       <TextInput
+   style={styles.textStyle}
+      placeholder={'Gübre Çeşidi Maliyet'}
+      selectedValue={this.state.tarlaAdi}
+   onChangeText={tarlaAdi => this.setState({ tarlaAdi })}
 
-           value={this.state.tarlaAdi} />
+      value={this.state.tarlaAdi} />
 
                  </CardSection>
          <CardSection>
-         <Text style={{ flex: 1 }}> Tarih</Text>
          <DatePicker
-           style={{ width: 200 }}
-           date={this.state.ekimTarihi}
-           mode="date"
-           placeholder="select date"
-           format="YYYY-MM-DD"
-           minDate="2016-01-01"
-           maxDate="2098-12-31"
-           confirmBtnText="Confirm"
-           cancelBtnText="Cancel"
-           customStyles={{
-             dateIcon: {
-               position: 'absolute',
-               left: 0,
-               top: 4,
-               marginLeft: 0
-             },
-             dateInput: {
-               marginLeft: 36
-             }
+         style={{ flex: 1, width: 200, color: '#fff' }}
+         date={this.state.ekimTarihi}
+         mode="date"
+         spaceholder="Tarih Giriniz"
+         format="DD-MM-YYYY"
 
-           }}
+           minDate="01-01-2001"
+           maxDate="31-12-2098"
+
+         confirmBtnText="Confirm"
+         cancelBtnText="Cancel"
+         customStyles={{
+           dateIcon: {
+             flex: 1,
+             position: 'absolute',
+             left: 0,
+             top: 4,
+             marginLeft: 0
+           },
+           dateInput: {
+             marginLeft: 99
+           }
+         }}
    onDateChange={(ekimTarihi) => { this.setState({ date: ekimTarihi }); }
          }
          />
          </CardSection>
 
      <CardSection>
-      <Text style={{ flex: 1 }}> Ekilecek Ürün</Text>
-           <Picker
-                 style={{ flex: 1 }}
+     <Image source={require('../images/urunAdi.png')}
+   />
+                 <Picker
+                 style={styles.textStyle}
                  selectedValue={this.state.urunAdi}
          onValueChange={urunAdi => this.setState({ urunAdi })}
                >
@@ -258,20 +265,23 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
 
      <CardSection>
 
-
-   <Text style={{ flex: 1 }}>Ekilecek Ürün Çeşidi</Text>
+     <Image source={require('../images/urunCesidi.png')}
+     />
+   <Text style={styles.textStyle}>Ekilecek Ürün Çeşidi</Text>
                {this.urunSelect(this.state.urunAdi)}
      </CardSection>
      <CardSection>
-     <Text style={{ flex: 1 }}>Gübre Çeşidi</Text>
+     <Image source={require('../images/gubreCesidi.png')}
+     />
+     <Text style={styles.textStyle}>Gübre Çeşidi</Text>
        {this.gubreCesidiSelect(this.state.urunAdi)}
 
      </CardSection>
      <CardSection>
-
-<Text style={{ flex: 1 }}>Gübre Türü </Text>
+     <Image source={require('../images/gubreTuru.png')}
+     />
 <Picker
-style={{ flex: 1 }}
+style={styles.textStyle}
 selectedValue={this.state.gubreTuru}
 onValueChange={gubreTuru =>
 this.setState({ gubreTuru })}
@@ -295,9 +305,10 @@ value="Tırnak Tozu" />
 
 
               <CardSection>
-              <Text style={{ flex: 1 }}>Tarım Metodu </Text>
-            <Picker
-              style={{ flex: 1 }}
+              <Image source={require('../images/tarimTipi.png')}
+              />
+              <Picker
+            style={styles.textStyle}
               selectedValue={this.state.tarimMetodu}
                 onValueChange={tarimMetodu => this.setState({ tarimMetodu })}
                       >
@@ -314,16 +325,17 @@ value="Tırnak Tozu" />
 
               </CardSection>
 <CardSection>
-   <Text style={{ flex: 1 }}>Ekilecek Ürün Miktarı</Text>
-   <TextInput
-   style={{ flex: 1 }}
+<Image source={require('../images/miktar.png')}
+/>
+     <TextInput
+  style={styles.textStyle}
      placeholder={'Ürün Miktarı'}
      selectedValue={this.state.urunMiktari}
      onChangeText={urunMiktari => this.setState({ urunMiktari })}
      value={this.state.urunMiktari}
    />
                                  <Picker
-                                             style={{ flex: 1 }}
+                                             style={styles.textStyle}
                                              selectedValue={this.state.urunMiktariCinsi}
          onValueChange={urunMiktariCinsi => this.setState({ urunMiktariCinsi })}
                                            >
@@ -334,11 +346,11 @@ value="Tırnak Tozu" />
                                            </Picker>
    </CardSection>
    <CardSection>
-
-                     <Text style={{ flex: 1 }}>Gübre Miktarı</Text>
+   <Image source={require('../images/miktar.png')}
+   />
 
                                        <TextInput
-                                       style={{ flex: 1 }}
+                                       style={styles.textStyle}
                                          placeholder={'Gübre Miktarı'}
                                          onChangeText={gubreMiktari =>
                this.setState({ gubreMiktari })}
@@ -347,7 +359,7 @@ value="Tırnak Tozu" />
 
 
                                                                          <Picker
-   style={{ flex: 1 }}
+ style={styles.textStyle}
    selectedValue={this.state.gubreMiktariCinsi}
   onValueChange={gubreMiktariCinsi => this.setState({ gubreMiktariCinsi })}
 >
@@ -361,10 +373,10 @@ value="Tırnak Tozu" />
 
 
    <CardSection>
-
-   <Text style={{ flex: 1 }}>Ekilecek Ürün Maliyeti:</Text>
-   <TextInput
-   style={{ flex: 1 }}
+   <Image source={require('../images/toplamMaliyet.png')}
+   />
+      <TextInput
+  style={styles.textStyle}
      placeholder={'Ürün Maliyeti'}
      selectedValue={this.state.urunMaliyet}
   onChangeText={urunMaliyet => this.setState({ urunMaliyet })}
@@ -372,7 +384,7 @@ value="Tırnak Tozu" />
      value={this.state.urunMaliyet} />
 
      <Picker
-             style={{ flex: 1 }}
+            style={styles.textStyle}
              selectedValue={this.state.maliyetCinsiUrun}
     onValueChange={maliyetCinsiUrun => this.setState({ maliyetCinsiUrun })}
            >
@@ -386,17 +398,18 @@ value="Tırnak Tozu" />
 
 
            <CardSection>
-           <Text style={{ flex: 1 }}>Ekilecek Gübre Çeşidi Maliyeti:</Text>
+           <Image source={require('../images/gubreCesidi.png')}
+           />
            <TextInput
-           style={{ flex: 1 }}
-             placeholder={'Gübre Çeşidi Maliyeti'}
-             selectedValue={this.state.gubreCesitMaliyet}
-              onValueText={gubreCesitMaliyet => this.setState({ gubreCesitMaliyet })}
+       style={styles.textStyle}
+          placeholder={'Gübre Çeşidi Maliyet'}
+          selectedValue={this.state.gubreCesitMaliyet}
+       onChangeText={gubreCesitMaliyet => this.setState({ gubreCesitMaliyet })}
 
-             value={this.state.gubreCesitMaliyet} />
+          value={this.state.gubreCesitMaliyet} />
 
              <Picker
-                     style={{ flex: 1 }}
+                     style={styles.textStyle}
                      selectedValue={this.state.maliyetCinsiGubreCesidi}
             onValueChange={maliyetCinsiGubreCesidi => this.setState({ maliyetCinsiGubreCesidi })}
                    >
@@ -408,16 +421,17 @@ value="Tırnak Tozu" />
 
                    </CardSection>
                          <CardSection>
-           <Text style={{ flex: 1 }}>Ekilecek Gübre Türü Maliyeti:</Text>
-           <TextInput
-           style={{ flex: 1 }}
-             placeholder={'Gübre Türü Maliyeti'}
-             selectedValue={this.state.gubreTuruMaliyet}
-              onValueText={gubreTuruMaliyet => this.setState({ gubreTuruMaliyet })}
+                         <Image source={require('../images/gubreTuru.png')}
+                         />
+                         <TextInput
+                     style={styles.textStyle}
+                        placeholder={'Gübre Çeşidi Maliyet'}
+                        selectedValue={this.state.gubreTuruMaliyet}
+                     onChangeText={gubreTuruMaliyet => this.setState({ gubreTuruMaliyet })}
 
-             value={this.state.gubreTuruMaliyet} />
+                        value={this.state.gubreTuruMaliyet} />
              <Picker
-                     style={{ flex: 1 }}
+                    style={styles.textStyle}
                      selectedValue={this.state.maliyetCinsiGubreTuru}
             onValueChange={maliyetCinsiGubreTuru => this.setState({ maliyetCinsiGubreTuru })}
                    >
@@ -430,17 +444,18 @@ value="Tırnak Tozu" />
                    </CardSection>
 
                    <CardSection>
-                   <Text style={{ flex: 1 }}>Ekilecek Alan Boyutu:</Text>
+                   <Image source={require('../images/ekildigiAlan.png')}
+                   />
                    <TextInput
-                   style={{ flex: 1 }}
-                     placeholder={'Ekilecek Alan Boyutu'}
-                     selectedValue={this.state.ekilecekAlanBoyutu}
-                      onValueText={ekilecekAlanBoyutu => this.setState({ ekilecekAlanBoyutu })}
+               style={styles.textStyle}
+                  placeholder={'Gübre Çeşidi Maliyet'}
+                  selectedValue={this.state.ekilecekAlanBoyutu}
+               onChangeText={ekilecekAlanBoyutu => this.setState({ ekilecekAlanBoyutu })}
 
-                     value={this.state.ekilecekAlanBoyutu} />
+                  value={this.state.ekilecekAlanBoyutu} />
 
                      <Picker
-                             style={{ flex: 1 }}
+                            style={styles.textStyle}
                              selectedValue={this.state.alanCinsi}
       onValueChange={alanCinsi => this.setState({ alanCinsi })}
                            >
@@ -452,14 +467,45 @@ value="Tırnak Tozu" />
 
                            </CardSection>
 
-                                     <CardSection>
-                                                {this.renderButton()}
-                                               </CardSection>
+                           <CardSection>
+                           {this.renderButton()}
+                             </CardSection>
                                                         </Card>
              </ScrollView>
        );
      }
    }
+   const styles = StyleSheet.create({
+
+       textStyleCins: {
+         flex: 1,
+           alignSelf: 'center',
+           color: '#085d29',
+           fontSize: 14,
+           fontWeight: '600',
+           paddingTop: 10,
+           paddingBottom: 10
+         },
+         textStyle: {
+           flex: 1,
+             alignSelf: 'center',
+             color: '#000',
+             fontSize: 16,
+             fontWeight: '600',
+             paddingLeft: 5,
+             paddingTop: 10,
+             paddingBottom: 10
+           },
+           buttonStyle: {
+             flex:1,
+             alignSelf: 'stretch',
+             backgroundColor: '#ffffff95',
+             borderRadius: 5,
+             borderWidth: 1,
+             borderColor: '#fff',
+             marginLeft: 5,
+             marginRight: 5
+           } });
 
 
 

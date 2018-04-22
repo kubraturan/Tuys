@@ -14,20 +14,60 @@ hesapla(a, b, c) {
 const { tarlaAdi, urunAdi, urunCesidi, urunMaliyet, gubreCesitMaliyet, gubreTuruMaliyet } = this.props.tarla;
       return (
     <ScrollView>
-    <Card >
-    <CardSection>
-    <Text>
+    <View style={styles.CardStyle}>
+    <View style={styles.CardSectionStyle}>
+    <Text style={styles.TextStyle}>
     { tarlaAdi } - {urunAdi} - {urunCesidi}
     </Text>
-    </CardSection>
-    <CardSection>
-    <Text>
+    </View>
+    <View style={styles.CardSectionStyle}>
+    <Text style={styles.TextStyle}>
 Maliyet:{this.hesapla(parseFloat(gubreCesitMaliyet, 10),
   parseFloat(gubreTuruMaliyet, 10), parseFloat(urunMaliyet, 10)) }TL
     </Text>
-    </CardSection>
-    </Card>
+    </View>
+    </View>
     </ScrollView>
-    )
+    );
     }
   }
+
+  const styles = {
+    CardStyle: {
+      flex:1,
+      borderWidth: 1,
+      borderRadius: 2,
+      borderColor: '#ffffff95',
+      borderBottomWidth: 0,
+      shadowColor: '#ffffff95',
+      shadowOffset: { width: 0, height: 2 },
+      shadowOpacity: 0.1,
+      shadowRadius: 2,
+      elevation: 1,
+      marginLeft: 5,
+      marginRight: 5,
+      marginTop: 10,
+
+    },
+
+    CardSectionStyle: {
+        borderBottomWidth: 1,
+      padding: 15,
+      color: '#fff',
+      backgroundColor: '#680f2b95',
+      justifyContent: 'flex-start',
+      flexDirection: 'row',
+      borderColor: '#ddd',
+      position: 'relative'
+    },
+    TextStyle: {
+           flex:1,
+           alignSelf: 'stretch',
+           color: '#ffffff',
+           fontSize:17,
+           fontWeight: '600',
+          flexDirection: 'row',
+           position: 'relative'
+
+         }
+  };

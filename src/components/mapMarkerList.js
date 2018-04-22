@@ -1,8 +1,9 @@
 import _ from 'lodash';
 import React, { Component } from 'react';
-import { ListView, View, Text, StyleSheet, Dimensions } from 'react-native';
+import { ListView, View, Text, StyleSheet, Dimensions, Alert } from 'react-native';
 import MapView from 'react-native-maps';
 import { connect } from 'react-redux';
+import { Actions } from 'react-native-router-flux';
 
 import { tarlalarListData } from '../actions';
 
@@ -40,24 +41,16 @@ const { tarlaAdi, latitude, longitude } = this.props;
     const markerler = [this.props.tarlaArray];
 
 console.log(markerler);
-    if (markerler.length === 0) {
-      return (
-        <View style={styles.container}>
-      <Text>Tarlalar Yükleniyor...</Text>
-        </View>
-      )
-    } else {
-      return (
+        return (
 
         <View style={styles.container}>
-        <Text>Tarlalar Yükleniyor...</Text>
           <MapView
            style={styles.map}
             region={{
                 latitude: 39.73902,
                 longitude: 37.018568,
-                latitudeDelta: 0.005,
-                longitudeDelta: 0.005,
+                latitudeDelta: 17,
+                longitudeDelta: 17,
               }}
           >
       {
@@ -76,8 +69,6 @@ console.log(markerler);
       );
     }
   }
-}
-
 const mapStateToProps = ({ tarlaDataResponse }) => {
   const tarlaArray = _.map(tarlaDataResponse, (val, uid) => {
     return { ...val, uid };
@@ -94,7 +85,7 @@ const styles = StyleSheet.create({
   },
   map:{
     width: width,
-    height: height*2/3
+    height: height
   }
 });
 

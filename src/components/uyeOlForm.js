@@ -79,14 +79,7 @@ class uyeOlForm extends Component {
           onChangeText={password => this.props.passwordChangeduye(password)}
         />
 
-        <TextInput
-          secureTextEntry
-          placeholder="Şifre"
-          style={TextInputStyle}
-          value={this.props.password}
-          onChangeText={password => this.props.passwordChangeduye(password)}
-        />
-
+  
         {this.renderButtonuye()}
 
                 </View>

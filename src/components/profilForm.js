@@ -21,12 +21,13 @@ export default class profilForm extends Component {
     Actions.tarlaListMaliyet();
 }
 
+
 render() {
     const { buttonStyle, textStyle } = styles;
     return (
       <ImageBackground source={require('../images/profilSayfasi.jpg')}
       style={styles.backgroundImage} >
-    <View style={{flex:1, marginTop:height/2}}>
+    <View style={{flex:1, marginTop:height/3}}>
 
     <TouchableOpacity onPress={this.clickTarlaEkle} style={[buttonStyle, {backgroundColor:'#cfab7795'}]}>
     <Text style={textStyle}> Tarla Ekle </Text>
@@ -46,6 +47,10 @@ render() {
 
       <TouchableOpacity onPress={this.clickuyeOl} style={[buttonStyle, {backgroundColor:'#9dcff495'}]}>
       <Text style={textStyle}> Hava Durumu </Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity  style={[buttonStyle, {backgroundColor:'#ff000095'}]}>
+      <Text style={textStyle}> Çıkış Yap </Text>
       </TouchableOpacity>
 
 

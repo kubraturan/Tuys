@@ -1,5 +1,5 @@
 import React from 'react';
-import { Scene, Router, Actions } from 'react-native-router-flux';
+import { Scene, Router, Actions, ActionConst } from 'react-native-router-flux';
 import LoginForm from './components/LoginForm';
 import TarlaEkleForm from './components/TarlaEkleForm';
 import TarlaList from './components/TarlaList';
@@ -16,9 +16,21 @@ import konumEkleMap from '../map/appOpen';
  class RouterComponent extends React.Component {
      render() {
     return (
-      <Router navigationBarStyle={styles.navBar} titleStyle={styles.navBarTitle} barButtonTextStyle={styles.barButtonTextStyle} barButtonIconStyle={styles.barButtonIconStyle}>
+      <Router
+
+      navigationBarStyle={styles.navBar}
+      titleStyle={styles.navBarTitle}
+     barButtonTextStyle={styles.barButtonTextStyle}
+      barButtonIconStyle={styles.barButtonIconStyle}
+  sceneStyle={{ marginTop: 53 }}
+      >
       <Scene key="kimlik">
-      <Scene key="ilkEkran" component={ilkEkranForm} />
+      <Scene
+       key="ilkEkran"
+        type={ActionConst.RESET}
+      component={ilkEkranForm}
+      />
+
       <Scene
        key="girisYap"
        component={LoginForm}
@@ -76,6 +88,7 @@ import konumEkleMap from '../map/appOpen';
           title="Tarla Görüntüle"
         />
         <Scene
+
           key="tarlaListMaliyet"
           component={tarlaListMaliyet}
           title="Toplam Maliyet"
@@ -95,7 +108,7 @@ import konumEkleMap from '../map/appOpen';
 const styles = {
   navBar: {
       backgroundColor: '#63656490',
-  },
+        },
   navBarTitle:{
       color: '#fff',
       alignSelf: 'center',

@@ -61,7 +61,7 @@ console.log(markerler);
                latitude: Number(markerler['0'][i].latitude),
                    longitude: Number(markerler['0'][i].longitude) }}
                    title={markerler['0'][i].tarlaAdi}
-              description={markerler['0'][i].description}
+              description={markerler['0'][i].urunAdi}
             />
           ))}
           </MapView>

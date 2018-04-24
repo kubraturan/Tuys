@@ -85,7 +85,8 @@ export const tarlalarListData = () => {
 
 
 export const tarlalariDuzenle = ({
-
+  latitude,
+  longitude,
   tarlaAdi,
 ekimTarihi,
    urunAdi,
@@ -112,7 +113,8 @@ ekimTarihi,
     dispatch({ type: UPDATE_REQUEST });
     firebase.database().ref(`${currentUser.uid}/${uid}`)
       .set({
-
+        latitude,
+        longitude,
         tarlaAdi,
       ekimTarihi,
          urunAdi,

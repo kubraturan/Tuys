@@ -12,7 +12,7 @@ class TarlaUpdate extends Component {
 
  state = {
    latitude: '',
-  longitude: '',
+   longitude: '',
    tarlaAdi: '',
    ekimTarihi: '',
    urunAdi: '',
@@ -37,8 +37,8 @@ alanCinsi: ''
  componentWillMount() {
    const {
      latitude,
-    longitude,
-     tarlaAdi,
+     longitude,
+         tarlaAdi,
    ekimTarihi,
       urunAdi,
      urunCesidi,
@@ -59,9 +59,9 @@ alanCinsi: ''
  alanCinsi } = this.props.tarlalar;
 
    this.setState({
-     latitude,
-   longitude,
-     tarlaAdi,
+     latitude: this.props.tarlalar.latitude,
+     longitude: this.props.tarlalar.longitude,
+              tarlaAdi,
  ekimTarihi,
     urunAdi,
    urunCesidi,
@@ -143,9 +143,10 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
 }
 
   clickUpdate() {
-    const { latitude,
+    const {
+      latitude,
       longitude,
-      tarlaAdi,
+              tarlaAdi,
   ekimTarihi,
      urunAdi,
     urunCesidi,
@@ -168,9 +169,10 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
 
     } = this.state;
 
-    this.props.tarlalariDuzenle({ latitude,
-    longitude,
-      tarlaAdi,
+    this.props.tarlalariDuzenle({
+      latitude,
+      longitude,
+            tarlaAdi,
   ekimTarihi,
      urunAdi,
     urunCesidi,
@@ -211,7 +213,7 @@ onValueChange={gubreCesidi => this.setState({ gubreCesidi })}
        />
        <TextInput
    style={styles.textStyle}
-      placeholder={'Gübre Çeşidi Maliyet'}
+      placeholder={'Tarla Adi'}
       selectedValue={this.state.tarlaAdi}
    onChangeText={tarlaAdi => this.setState({ tarlaAdi })}
 

@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, TextInput, Picker, ScrollView, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Text, TextInput, Picker, ScrollView, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import DatePicker from 'react-native-datepicker'
 import { Button, Card, CardSection } from '../ortak';
@@ -10,52 +10,84 @@ const PickerItem = Picker.Item;
 class TARLAEKLEFORM extends Component {
 
     clickSave() {
-      const {
-        latitude,
-       longitude,
-        tarlaAdi,
-      ekimTarihi,
-         urunAdi,
-        urunCesidi,
-        urunMiktari,
-        urunMiktariCinsi,
-        urunMaliyet,
-           gubreTuru,
-           gubreTuruMaliyet,
-            gubreCesidi,
-            gubreCesitMaliyet,
-             gubreMiktari,
-             gubreMiktariCinsi,
-              tarimMetodu,
-            ekilecekAlanBoyutu,
-          maliyetCinsiUrun,
-        maliyetCinsiGubreCesidi,
-      maliyetCinsiGubreTuru,
-    alanCinsi } = this.props;
-
-      this.props.tarlaCreate({
-        latitude,
-       longitude,
-        tarlaAdi,
+        const {
+          latitude,
+         longitude,
+          tarlaAdi,
         ekimTarihi,
-        urunAdi,
-        urunCesidi,
-        urunMiktari,
-        urunMiktariCinsi,
-        urunMaliyet,
-           gubreTuru,
-           gubreTuruMaliyet,
-            gubreCesidi,
-            gubreCesitMaliyet,
-             gubreMiktari,
-             gubreMiktariCinsi,
-              tarimMetodu,
-            ekilecekAlanBoyutu,
+           urunAdi,
+          urunCesidi,
+          urunMiktari,
+          urunMiktariCinsi,
+          urunMaliyet,
+             gubreTuru,
+             gubreTuruMaliyet,
+              gubreCesidi,
+              gubreCesitMaliyet,
+               gubreMiktari,
+               gubreMiktariCinsi,
+                tarimMetodu,
+              ekilecekAlanBoyutu,
             maliyetCinsiUrun,
           maliyetCinsiGubreCesidi,
         maliyetCinsiGubreTuru,
-      alanCinsi });
-    }
+      alanCinsi } = this.props;
+
+if (tarlaAdi === null ||
+   ekimTarihi === null ||
+    urunAdi === null ||
+urunCesidi === 'Seçiniz' ||
+urunMiktari === null ||
+urunMiktariCinsi === 'Cinsi' ||
+urunMaliyet === null ||
+  gubreTuru === null ||
+  gubreTuruMaliyet === null ||
+   gubreCesidi === 'Seçiniz' ||
+   gubreCesitMaliyet === null ||
+    gubreMiktari === null ||
+    gubreMiktariCinsi === 'Cinsi' ||
+     tarimMetodu === null ||
+   ekilecekAlanBoyutu === null ||
+ maliyetCinsiUrun === 'Birim' ||
+maliyetCinsiGubreCesidi === 'Birim' ||
+maliyetCinsiGubreTuru === 'Birim' ||
+alanCinsi === 'Birim') {
+  Alert.alert(
+    'Mesaj',
+    'Boş Alanları Doldurunuz Lütfen...',
+    [
+
+      { text: 'Tamam', onPress: () => null }
+
+    ]
+
+  );
+
+} else {
+        this.props.tarlaCreate({
+          latitude,
+         longitude,
+          tarlaAdi,
+          ekimTarihi,
+          urunAdi,
+          urunCesidi,
+          urunMiktari,
+          urunMiktariCinsi,
+          urunMaliyet,
+             gubreTuru,
+             gubreTuruMaliyet,
+              gubreCesidi,
+              gubreCesitMaliyet,
+               gubreMiktari,
+               gubreMiktariCinsi,
+                tarimMetodu,
+              ekilecekAlanBoyutu,
+              maliyetCinsiUrun,
+            maliyetCinsiGubreCesidi,
+          maliyetCinsiGubreTuru,
+        alanCinsi });
+      }
+}
 
   urunSelect(urun) {
     if (urun === 'Buğday') {
@@ -112,8 +144,18 @@ this.props.tarlaEkleChanged({ props: 'urunCesidi', value: urunCesidi })}
      this.props.tarlaEkleChanged({ props: 'gubreCesidi', value: gubreCesidi })}
         >
 <PickerItem label="Seçiniz" value="Seçiniz" />
-              <PickerItem label="Gübre Buğday" value="gübrebugday" />
-                <PickerItem label="GB" value="gb" />
+
+              <PickerItem label="Ahır Gübresi" value="Ahır Gübresi" />
+                <PickerItem label="Kompostlar" value="Kompostlar" />
+                <PickerItem label="Yeşil Gübre" value="Yeşil Gübre" />
+                  <PickerItem label="Amonyak" value="Amonyak" />
+                  <PickerItem label="Amonyum nitrat" value="Amonyum nitrat" />
+                    <PickerItem label="Üre" value="Üre" />
+                    <PickerItem label="Süperfosfatlar" value="Süperfosfatlar" />
+                    <PickerItem label="Amonyum fosfat" value="Amonyum fosfat" />
+                      <PickerItem label="Potasyumlu gübreler" value="Potasyumlu gübreler" />
+                      <PickerItem label="Kompoze Gübreler" value="Kompoze Gübreler" />
+
                 </Picker>);
     } else if (urun === 'Arpa') {
         return (<Picker
@@ -123,8 +165,16 @@ onValueChange={gubreCesidi =>
    this.props.tarlaEkleChanged({ props: 'gubreCesidi', value: gubreCesidi })}
         >
 <PickerItem label="Seçiniz" value="Seçiniz" />
-              <PickerItem label="Gübre Arpa" value="gübrearpa" />
-              <PickerItem label="ga" value="ga" />
+<PickerItem label="Ahır Gübresi" value="Ahır Gübresi" />
+  <PickerItem label="Kompostlar" value="Kompostlar" />
+  <PickerItem label="Yeşil Gübre" value="Yeşil Gübre" />
+    <PickerItem label="Amonyak" value="Amonyak" />
+    <PickerItem label="Amonyum nitrat" value="Amonyum nitrat" />
+      <PickerItem label="Üre" value="Üre" />
+      <PickerItem label="Süperfosfatlar" value="Süperfosfatlar" />
+      <PickerItem label="Amonyum fosfat" value="Amonyum fosfat" />
+        <PickerItem label="Potasyumlu gübreler" value="Potasyumlu gübreler" />
+        <PickerItem label="Kompoze Gübreler" value="Kompoze Gübreler" />
 
 
                 </Picker>);

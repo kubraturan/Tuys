@@ -1,27 +1,29 @@
+import moment from 'moment';
 import { TARLA_EKLE_CHANGED, CREATE_REQUEST, CREATE_REQUEST_SUCCESS } from '../actions/types';
+
 
 const INITIAL_STATE = {
 
-  tarlaAdi: '',
-  ekimTarihi: '',
-  urunAdi: '',
-   urunCesidi: '',
-   urunMiktariCinsi: '',
-    urunMiktari: '',
-    urunMaliyet: '',
-     gubreTuru: '',
-     gubreTuruMaliyet: '',
-      gubreCesidi: '',
-      gubreCesitMaliyet: '',
-       gubreMiktari: '',
-        tarimMetodu: '',
-        gubreMiktariCinsi: '',
-        ekilecekAlanBoyutu: '',
-        maliyetCinsiUrun: '',
-      maliyetCinsiGubreCesidi: '',
-    maliyetCinsiGubreTuru: '',
+  tarlaAdi: null,
+  ekimTarihi: moment().format('DD-MM-YYYY'),
+  urunAdi: null,
+   urunCesidi: 'Seçiniz',
+   urunMiktariCinsi: 'Cinsi',
+    urunMiktari: null,
+    urunMaliyet: null,
+     gubreTuru: null,
+     gubreTuruMaliyet: null,
+      gubreCesidi: 'Seçiniz',
+      gubreCesitMaliyet: null,
+       gubreMiktari: null,
+        tarimMetodu: null,
+        gubreMiktariCinsi: 'Cinsi',
+        ekilecekAlanBoyutu: null,
+        maliyetCinsiUrun: 'Birim',
+      maliyetCinsiGubreCesidi: 'Birim',
+    maliyetCinsiGubreTuru: 'Birim',
         loading: '',
-        alanCinsi: ''
+        alanCinsi: 'Birim'
 
 
 };

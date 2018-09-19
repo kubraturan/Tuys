@@ -14,114 +14,102 @@ import mapMarkerList from './components/mapMarkerList';
 import konumEkleMap from '../map/appOpen';
 
  class RouterComponent extends React.Component {
-     render() {
-    return (
-      <Router
 
-      navigationBarStyle={styles.navBar}
-      titleStyle={styles.navBarTitle}
-     barButtonTextStyle={styles.barButtonTextStyle}
-      barButtonIconStyle={styles.barButtonIconStyle}
-  sceneStyle={{ marginTop: 53 }}
-      >
-      <Scene key="kimlik">
-      <Scene
-       key="ilkEkran"
-        type={ActionConst.RESET}
-      component={ilkEkranForm}
-      />
-
-      <Scene
-       key="girisYap"
-       component={LoginForm}
-       style={{
-          color: '#000',
-         fontSize: 16,
-         fontWeight: '600',
-
-        }}
-
-      title="Giriş Sayfası" />
-      <Scene key="uyeOl" component={uyeOlForm} title="Üye Ol" />
-      </Scene>
-
-      <Scene key="main">
-
-      <Scene
-
-        key="profilform"
-        component={profilForm}
-        title="Profil Sayfası"
-      />
-        <Scene
-          onRight={() => Actions.konumEkleMap()}
-          rightTitle="Yeni Tarla"
-          key="tarlaList"
-          component={TarlaList}
-          title="Tarlalarım"
-        />
-
-        <Scene
-          key="konumEkleMap"
-          component={konumEkleMap}
-          title="Konum Ekle"
-        />
-        <Scene
-          key="TarlaEkleForm"
-          component={TarlaEkleForm}
-          title="Tarla Ekle"
-        />
-
-        <Scene
-          key="tarlaupdate"
-          component={tarlaupdate}
-          title="Tarla Düzenle"
-        />
-        <Scene
-          key="tarladelete"
-          component={tarladelete}
-          title="Tarla Sil"
-        />
-        <Scene
-          key="tarlagoruntule"
-          component={tarlaBilgisiGörüntüle}
-          title="Tarla Görüntüle"
-        />
-        <Scene
-
-          key="tarlaListMaliyet"
-          component={tarlaListMaliyet}
-          title="Toplam Maliyet"
-        />
-        <Scene
-          key="mapMarkerList"
-          component={mapMarkerList}
-          title="Haritada Tarlalarım"
-        />
-
-
+    render() {
+      return (
+        <Router
+          navigationBarStyle={styles.navBar}
+          titleStyle={styles.navBarTitle}
+          barButtonTextStyle={styles.barButtonTextStyle}
+          barButtonIconStyle={styles.barButtonIconStyle}
+          sceneStyle={{ marginTop: 53 }}>
+          <Scene 
+            key="kimlik">
+            <Scene
+              key="ilkEkran"
+              type={ActionConst.RESET}
+              component={ilkEkranForm}/>
+            <Scene
+              key="girisYap"
+              component={LoginForm}
+              style={{
+                color: '#000',
+               fontSize: 16,
+               fontWeight: '600',
+              }}
+              title="Giriş Sayfası" />
+            <Scene 
+              key="uyeOl" 
+              component={uyeOlForm} 
+              title="Üye Ol" />
           </Scene>
-      </Router>
-    );
+
+          <Scene key="main">
+            <Scene
+              key="profilform"
+              component={profilForm}
+              title="Profil Sayfası"/>
+            <Scene
+              onRight={() => Actions.konumEkleMap()}
+              rightTitle="Yeni Tarla"
+              key="tarlaList"
+              component={TarlaList}
+              title="Tarlalarım"/>
+            <Scene
+              key="konumEkleMap"
+              component={konumEkleMap}
+              title="Konum Ekle"
+            />
+            <Scene
+              key="TarlaEkleForm"
+              component={TarlaEkleForm}
+              title="Tarla Ekle"
+            />
+            <Scene
+              key="tarlaupdate"
+              component={tarlaupdate}
+              title="Tarla Düzenle"
+            />
+            <Scene
+              key="tarladelete"
+              component={tarladelete}
+              title="Tarla Sil"
+            />
+            <Scene
+              key="tarlagoruntule"
+              component={tarlaBilgisiGörüntüle}
+              title="Tarla Görüntüle"
+            />
+            <Scene
+              key="tarlaListMaliyet"
+              component={tarlaListMaliyet}
+              title="Toplam Maliyet"
+            />
+            <Scene
+              key="mapMarkerList"
+              component={mapMarkerList}
+              title="Haritada Tarlalarım"
+            />
+          </Scene>
+        </Router>
+      );
+    }
   }
-}
 const styles = {
   navBar: {
-      backgroundColor: '#63656490',
-        },
+    backgroundColor: '#63656490',
+  },
   navBarTitle:{
-      color: '#fff',
-      alignSelf: 'center',
-      fontSize: 16,
-      fontWeight: '600',
+    color: '#fff',
+    alignSelf: 'center',
+    fontSize: 16,
+    fontWeight: '600',
   },
   barButtonTextStyle:{
-      color: '#FFFFFF'
+    color: '#FFFFFF'
   },
   barButtonIconStyle:{
-      tintColor: 'rgb(255,255,255)'
+    tintColor: 'rgb(255,255,255)'
   },
 }
-
-
 export default RouterComponent;

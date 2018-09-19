@@ -6,8 +6,8 @@ import ReduxThunk from 'redux-thunk';
 import reducers from './reducers';
 import Router from './Router';
 
-
   class Main extends Component {
+
   componentWillMount() {
     firebase.initializeApp({
       apiKey: 'AIzaSyCbvRBlfHkdUFLb63mr0LjRz4GAJujgvDI',
@@ -16,8 +16,9 @@ import Router from './Router';
       projectId: 'tuys-713d4',
       storageBucket: 'tuys-713d4.appspot.com',
       messagingSenderId: '705125966945'
-  });
+    });
   }
+  
   render() {
     const store = createStore(reducers, {}, applyMiddleware(ReduxThunk));
     return (
@@ -27,5 +28,4 @@ import Router from './Router';
     );
   }
 }
-
 export default Main;

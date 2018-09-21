@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 
-
 const CardSection = (props) => {
   return (
     <View style={styles.subContainerStyle}>
@@ -12,7 +11,7 @@ const CardSection = (props) => {
 
 const styles = {
   subContainerStyle: {
-      borderBottomWidth: 1,
+    borderBottomWidth: 1,
     padding: 15,
     color: '#fff',
     backgroundColor: '#085d29',

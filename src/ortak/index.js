@@ -4,8 +4,8 @@ export * from './CardSection';
 export * from './Spinner';
 
 
-// tüm dosyaları buraya eledik budan çağırıp kulnmak için daha güzel görünür olacak böylece
-// fakat yukarda yazılı olan tüm dosyaarın içine gidip şunu yapmamız lazım
-//export { Button };
+// tüm dosyaları buraya ekledik burdan çağırıp kullanmak için daha güzel görünür olacak böylece
+// fakat yukarıda yazılı olan tüm dosyaarın içine gidip şunu yapmamız lazım
+// export { Button };
 // export default button; olmayacak
-//prtak componentleri tek bir import dizininden çağırma
+// ortak componentleri tek bir import dizininden çağırma

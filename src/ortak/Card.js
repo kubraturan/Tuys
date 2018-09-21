@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from 'react-native';
 
-
 const Card = (props) => {
   return (
     <View style={styles.containerStyle}>
@@ -24,8 +23,6 @@ const styles = {
     marginLeft: 5,
     marginRight: 5,
     marginTop: 10,
-
   },
 };
-
 export { Card };

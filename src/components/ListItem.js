@@ -9,73 +9,72 @@ class ListItem extends Component {
       '',
       'Bir işlem seçiniz!',
       [
-  { text: 'Görüntüle', onPress: () => Actions.tarlagoruntule({ tarlalar: this.props.tarla }) },
-        { text: 'Düzenle', onPress: () => Actions.tarlaupdate({ tarlalar: this.props.tarla }) },
-        { text: 'Sil', onPress: () => Actions.tarladelete({ tarlalar: this.props.tarla }) },
+        { 
+          text: 'Görüntüle',
+          onPress: () => Actions.tarlagoruntule({ tarlalar: this.props.tarla}) 
+        },
+        { 
+          text: 'Düzenle',
+          onPress: () => Actions.tarlaupdate({ tarlalar: this.props.tarla })},
+        { 
+          text: 'Sil', 
+          onPress: () => Actions.tarladelete({ tarlalar: this.props.tarla })},
       ],
-        { cancelable: false }
-
+        { 
+          cancelable: false
+        }
     );
   }
 
   render() {
-      const { tarlaAdi, urunAdi, urunCesidi } = this.props.tarla;
+    const {tarlaAdi, urunAdi, urunCesidi} = this.props.tarla;
 
     if (urunAdi === 'Buğday') {
       return (
         <ScrollView>
-        <TouchableWithoutFeedback onPress={this.ogrenciClick.bind(this)}>
-        <View>
-          <View style={styles.ViewStyleBugday}>
-
-          <Text style={styles.TextStyle}>
-            { tarlaAdi } -
-          </Text>
-            <Text style={styles.TextStyle}>
-              { urunAdi } {urunCesidi}
-            </Text>
-          </View>
-        </View>
-        </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback onPress={this.ogrenciClick.bind(this)}>
+            <View>
+              <View style={styles.ViewStyleBugday}>
+                <Text style={styles.TextStyle}>
+                    {tarlaAdi} -
+                </Text>
+                <Text style={styles.TextStyle}>
+                    {urunAdi} {urunCesidi}
+                </Text>
+              </View>
+            </View>
+          </TouchableWithoutFeedback>
         </ScrollView>
       );
     }
-
-      return (
-        <ScrollView>
-          <TouchableWithoutFeedback onPress={this.ogrenciClick.bind(this)}>
+    return (
+      <ScrollView>
+        <TouchableWithoutFeedback onPress={this.ogrenciClick.bind(this)}>
           <View>
             <View style={styles.ViewStyleArpa}>
-
-            <Text style={styles.TextStyle}>
-              { tarlaAdi } -
-            </Text>
+              <Text style={styles.TextStyle}>
+                { tarlaAdi } -
+              </Text>
               <Text style={styles.TextStyle}>
                 { urunAdi } {urunCesidi}
               </Text>
             </View>
           </View>
-          </TouchableWithoutFeedback>
-          </ScrollView>
-        );
-      }
-
+        </TouchableWithoutFeedback>
+      </ScrollView>
+    );
+  }
 }
 
 const styles = StyleSheet.create({
-
   TextStyle: {
     alignSelf: 'stretch',
     color: '#636564',
     fontSize:17,
     fontWeight: '600',
-
-      //  flexDirection: 'row',
     position: 'relative'
-
   },
   ViewStyleArpa: {
-
     backgroundColor: '#9ebc3899',
     borderRadius: 5,
     borderWidth: 1,
@@ -87,12 +86,10 @@ const styles = StyleSheet.create({
     marginTop:5,
     justifyContent: 'center',
     alignItems: 'center',
-     flexDirection: 'row',
+    flexDirection: 'row',
     position: 'relative'
-
   },
-    ViewStyleBugday: {
-
+  ViewStyleBugday: {
     backgroundColor: '#cfab7795',
     borderRadius: 5,
     borderWidth: 1,
@@ -104,10 +101,8 @@ const styles = StyleSheet.create({
     marginTop:5,
     justifyContent: 'center',
     alignItems: 'center',
-     flexDirection: 'row',
+    flexDirection: 'row',
     position: 'relative'
-
-    } });
-
-
+  }
+});
 export default ListItem;

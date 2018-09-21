@@ -49,12 +49,13 @@ export const loginUseruye = ({ ad, soyad, email, password }) => {
   return (dispatch) => {
     dispatch({ type: LOGIN_USER_UYE });
     if (ad === '' || soyad === '' || email === '' || password === '') {
-    loginFailBos(dispatch);
-    } else {
-          firebase.auth().createUserWithEmailAndPassword(email, password)
-            .then(user => loginSucces(dispatch, user))
-            .catch(() => loginFailuye(dispatch));
-        }
+      loginFailBos(dispatch);
+    } 
+    else {
+      firebase.auth().createUserWithEmailAndPassword(email, password)
+      .then(user => loginSucces(dispatch, user))
+      .catch(() => loginFailuye(dispatch));
+    }
   };
 };
 
@@ -83,7 +84,7 @@ const loginSucces = (dispatch, user) => {
 const loginFailBos = (dispatch) => {
   Alert.alert(
     'Mesaj',
-  'Her iki alanda Dolu olmalı!',
+    'Her iki alanda Dolu olmalı!',
     [
       { text: 'Tamam', onPress: () => null }
     ]
